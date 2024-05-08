@@ -32,9 +32,6 @@ export const getSupportedIcons = function () {
 }
 
 export const getIcon = function (iconName: string): IconComponent {
-  if (!iconList[iconName]) {
-    // if the icon requested is not supported, use the broken image icon instead
-    return BrokenImage
-  }
-  return iconList[iconName]
+  // if the icon requested is not supported, use the broken image icon instead
+  return iconList[iconName] || BrokenImage
 }

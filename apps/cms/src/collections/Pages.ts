@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload/types'
 import RichText from '../blocks/RichText'
 import { bustCache } from '../utils/cache-buster'
-import { PageData } from '../utils/payload-types'
+import { PageData } from '@repo/payload-common/types'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',

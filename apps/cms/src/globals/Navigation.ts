@@ -1,5 +1,5 @@
 import { GlobalConfig } from 'payload/types'
-import { getSupportedIcons } from '../utils/payload-icons'
+import { getSupportedIcons } from '@repo/payload-common/icons'
 
 export const Navigation: GlobalConfig = {
   slug: 'navigation',

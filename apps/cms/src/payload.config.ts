@@ -27,7 +27,7 @@ export default buildConfig({
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, './utils/payload-types.ts'),
+    outputFile: path.resolve(dirname, '../../../packages/payload-common/types.d.ts'),
   },
   db: postgresAdapter({
     pool: {

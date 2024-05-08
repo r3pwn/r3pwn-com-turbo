@@ -1,0 +1,51 @@
+{
+  "name": "r3pwn-com-cms",
+  "description": "A blank template to get started with Payload 3.0",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "predev": "yarn generate:types",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --port 8080",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "generate:types": "payload generate:types"
+  },
+  "engines": {
+    "node": ">=18.19.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.556.0",
+    "@aws-sdk/lib-storage": "^3.556.0",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
+    "@payloadcms/db-postgres": "beta",
+    "@payloadcms/next": "beta",
+    "@payloadcms/plugin-cloud": "beta",
+    "@payloadcms/plugin-cloud-storage": "beta",
+    "@payloadcms/plugin-nested-docs": "beta",
+    "@payloadcms/richtext-lexical": "beta",
+    "aws-crt": "^1.21.2",
+    "cross-env": "^7.0.3",
+    "next": "^14.3.0-canary.47",
+    "payload": "beta",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.33.3"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.4.16",
+    "@types/node": "^20.11.25",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "dotenv": "^16.4.5",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  }
+}

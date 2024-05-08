@@ -1,6 +1,6 @@
 {
-  "name": "r3pwn-com-cms",
-  "description": "A blank template to get started with Payload 3.0",
+  "name": "cms",
+  "description": "A PayloadCMS 3.0 project",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

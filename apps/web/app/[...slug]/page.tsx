@@ -1,3 +1,5 @@
+import { getPageList } from "../../providers/contentProvider";
+
 type Params = {
   slug: string[];
 };
@@ -7,8 +9,10 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  // Generate two pages at build time and the rest (3-100) on-demand
-  return [{ slug: ["test"] }, { slug: ["testing", "page"] }];
+  const pages = await getPageList();
+  return pages.map((page) => ({
+    slug: page.url.split("/").filter((slug) => !!slug),
+  }));
 }
 
 export default async function Page({ params }: Props) {

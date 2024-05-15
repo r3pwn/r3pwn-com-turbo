@@ -72,15 +72,15 @@ export interface PayloadMedia {
  */
 export interface PageData {
   id: number;
+  showHeader?: boolean | null;
+  showBreadcrumbs?: boolean | null;
   title: string;
   subtitle?: string | null;
   description: string;
   featuredImage?: number | PayloadMedia | null;
-  showTitle?: boolean | null;
   content?: RichTextBlock[] | null;
   slug: string;
   postedDate: string;
-  parent?: (number | null) | PageData;
   breadcrumbs?:
     | {
         doc?: (number | null) | PageData;
@@ -89,6 +89,7 @@ export interface PageData {
         id?: string | null;
       }[]
     | null;
+  parent?: (number | null) | PageData;
   updatedAt: string;
   createdAt: string;
 }

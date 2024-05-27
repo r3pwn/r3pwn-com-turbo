@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "predev": "yarn generate:types",
+    "predev": "payload generate:types",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --port 8080",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
@@ -29,10 +29,10 @@
     "@repo/payload-common": "workspace:*",
     "aws-crt": "^1.21.2",
     "cross-env": "^7.0.3",
-    "next": "^14.3.0-canary.47",
+    "next": "rc",
     "payload": "beta",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "rc",
+    "react-dom": "rc",
     "sharp": "^0.33.3"
   },
   "devDependencies": {

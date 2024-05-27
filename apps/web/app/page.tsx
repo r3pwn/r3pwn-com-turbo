@@ -1,8 +1,10 @@
 import Image from "next/image";
-import { Card } from "@repo/ui/card";
-import { Code } from "@repo/ui/code";
 import styles from "./page.module.css";
-import { Button } from "@repo/ui/button";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import Link from "next/link";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { TypographyH1, TypographyH2, TypographyH3 } from "@/components/ui/typography";
+import { PageHeader } from "@/components/meta/page-header";
 
 function Gradient({
   conic,
@@ -54,33 +56,11 @@ const LINKS = [
 export default function Page(): JSX.Element {
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          examples/basic&nbsp;
-          <Code className={styles.code}>web</Code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            By{" "}
-            <Image
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              height={24}
-              priority
-              src="/favicon.ico"
-              width={100}
-            />
-          </a>
-        </div>
-      </div>
+      <PageHeader title="Main page test" breadcrumbs={[{text:'Home',link:'/'},{text:'Pages',link:'/pages'},{text:'Test',link:'/pages/test'}]} />
 
-      <Button appName="web" className={styles.button}>
+      <button className={styles.button}>
         Click me!
-      </Button>
+      </button>
 
       <div className={styles.hero}>
         <div className={styles.heroContent}>
@@ -134,9 +114,9 @@ export default function Page(): JSX.Element {
 
       <div className={styles.grid}>
         {LINKS.map(({ title, href, description }) => (
-          <Card className={styles.card} href={href} key={title} title={title}>
+          <a className={styles.card} href={href} key={title} title={title}>
             {description}
-          </Card>
+          </a>
         ))}
       </div>
     </main>

@@ -1,9 +1,5 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import Link from "next/link";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { TypographyH1, TypographyH2, TypographyH3 } from "@/components/ui/typography";
 import { PageHeader } from "@/components/meta/page-header";
 
 function Gradient({
@@ -56,11 +52,14 @@ const LINKS = [
 export default function Page(): JSX.Element {
   return (
     <main className={styles.main}>
-      <PageHeader title="Main page test" breadcrumbs={[{text:'Home',link:'/'},{text:'Pages',link:'/pages'},{text:'Test',link:'/pages/test'}]} />
-
-      <button className={styles.button}>
-        Click me!
-      </button>
+      <PageHeader
+        title="Main page test"
+        breadcrumbs={[
+          { text: "Home", link: "/" },
+          { text: "Pages", link: "/pages" },
+          { text: "Test", link: "/pages/test" },
+        ]}
+      />
 
       <div className={styles.hero}>
         <div className={styles.heroContent}>

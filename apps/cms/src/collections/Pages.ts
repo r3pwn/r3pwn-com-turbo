@@ -149,7 +149,7 @@ export const Pages: CollectionConfig = {
         if (matchingDoc) {
           return Response.json(matchingDoc, { status: 200 })
         } else {
-          return Response.json({ message: 'Not found' }, { status: 404 })
+          return Response.json(null, { status: 404 })
         }
       },
     },

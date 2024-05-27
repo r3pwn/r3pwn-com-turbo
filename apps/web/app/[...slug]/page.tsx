@@ -1,4 +1,6 @@
-import { getPageList } from "../../providers/contentProvider";
+import { notFound } from "next/navigation";
+import { getPageBySlug, getPageList } from "../../providers/contentProvider";
+import { PageHeader } from "@/components/meta/page-header";
 
 type Params = {
   slug: string[];
@@ -16,10 +18,29 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
+  const { slug } = params;
+  const page = await getPageBySlug(slug);
+
+  if (!page) {
+    return notFound();
+  }
+
+  const pageBreadcrumbs = page.showBreadcrumbs
+    ? [
+        { label: "Home", url: "/" },
+        ...page.breadcrumbs!.map((crumb) => ({
+          label: crumb.label || "",
+          url: crumb.url || "",
+        })),
+      ]
+    : undefined;
+
   return (
     <div>
-      <p>{params.slug[0]}</p>
-      <p>{params.slug[1]}</p>
+      {page.showHeader && (
+        <PageHeader title={page.title} breadcrumbs={pageBreadcrumbs} />
+      )}
+      <div>{JSON.stringify(page)}</div>
     </div>
   );
 }

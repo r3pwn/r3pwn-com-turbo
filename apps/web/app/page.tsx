@@ -55,9 +55,9 @@ export default function Page(): JSX.Element {
       <PageHeader
         title="Main page test"
         breadcrumbs={[
-          { text: "Home", link: "/" },
-          { text: "Pages", link: "/pages" },
-          { text: "Test", link: "/pages/test" },
+          { label: "Home", url: "/" },
+          { label: "Pages", url: "/pages" },
+          { label: "Test", url: "/pages/test" },
         ]}
       />
 

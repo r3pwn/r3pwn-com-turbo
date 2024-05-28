@@ -38,7 +38,11 @@ export default async function Page({ params }: Props) {
   return (
     <div>
       {page.showHeader && (
-        <PageHeader title={page.title} breadcrumbs={pageBreadcrumbs} />
+        <PageHeader
+          title={page.title}
+          subtitle={page.subtitle || ""}
+          breadcrumbs={pageBreadcrumbs}
+        />
       )}
       <div>{JSON.stringify(page)}</div>
     </div>

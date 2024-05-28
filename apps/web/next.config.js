@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  transpilePackages: ["@repo/ui"],
+const nextConfig = {
+  experimental: {
+    reactCompiler: true,
+  },
 };
+
+module.exports = nextConfig;

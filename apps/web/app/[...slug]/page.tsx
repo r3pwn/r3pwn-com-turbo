@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getPageBySlug, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
+import { RichText } from "@/components/blocks/rich-text";
 
 type Params = {
   slug: string[];
@@ -45,6 +46,14 @@ export default async function Page({ params }: Props) {
         />
       )}
       <div>{JSON.stringify(page)}</div>
+      <br />
+      <div>{JSON.stringify(page.content)}</div>
+      {page.content?.map((block) => {
+        switch (block.blockType) {
+          case "rich-text":
+            return <RichText key={block.id} content={block.content} />;
+        }
+      })}
     </div>
   );
 }

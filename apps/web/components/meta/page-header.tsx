@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { Typography } from "../ui/typography";
 import { BreadcrumbTarget, SmartBreadcrumbs } from "./smart-breadcrumbs";
 
@@ -16,7 +15,7 @@ export function PageHeader({
   ...props
 }: PageHeaderProps) {
   return (
-    <header className={cn("", className)} {...props}>
+    <header className={className} {...props}>
       {breadcrumbs && (
         <SmartBreadcrumbs breadcrumbs={breadcrumbs} className="mb-2" />
       )}

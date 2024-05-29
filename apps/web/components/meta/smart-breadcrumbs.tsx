@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -23,17 +24,15 @@ export function SmartBreadcrumbs({
     <Breadcrumb {...props}>
       <BreadcrumbList>
         {breadcrumbs.map((crumb, index) => (
-          <>
-            <BreadcrumbItem key={`crumb-${index}`}>
+          <Fragment key={index}>
+            <BreadcrumbItem>
               {index === breadcrumbs.length - 1 && <div>{crumb.label}</div>}
               {index !== breadcrumbs.length - 1 && (
                 <BreadcrumbLink href={crumb.url}>{crumb.label}</BreadcrumbLink>
               )}
             </BreadcrumbItem>
-            {index != breadcrumbs.length - 1 && (
-              <BreadcrumbSeparator key={`separator-${index}`} />
-            )}
-          </>
+            {index != breadcrumbs.length - 1 && <BreadcrumbSeparator />}
+          </Fragment>
         ))}
       </BreadcrumbList>
     </Breadcrumb>

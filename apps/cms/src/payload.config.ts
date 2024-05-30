@@ -24,7 +24,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Pages],
   globals: [Navigation],
-  editor: lexicalEditor({}),
+  editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, '../../../packages/payload-common/types.d.ts'),

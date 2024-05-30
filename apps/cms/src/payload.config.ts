@@ -1,5 +1,10 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import {
+  FixedToolbarFeature,
+  InlineCodeFeature,
+  lexicalEditor,
+  LinkFeature,
+} from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload/config'
 import { fileURLToPath } from 'url'
 import { s3Storage } from '@payloadcms/storage-s3'
@@ -24,7 +29,15 @@ export default buildConfig({
   },
   collections: [Users, Media, Pages],
   globals: [Navigation],
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures, rootFeatures }) => [
+      ...defaultFeatures,
+      ...rootFeatures,
+      FixedToolbarFeature(),
+      InlineCodeFeature(),
+      LinkFeature(),
+    ],
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, '../../../packages/payload-common/types.d.ts'),

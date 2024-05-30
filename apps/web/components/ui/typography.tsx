@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { type ClassValue } from "clsx";
 import { type ComponentPropsWithoutRef, type ElementType } from "react";
 
-type DisplayVariant =
+export type DisplayVariant =
   | "heading-xl"
   | "heading-lg"
   | "heading-md"
@@ -11,7 +11,9 @@ type DisplayVariant =
   | "body-md"
   | "body-sm"
   | "quote"
-  | "code";
+  | "code"
+  | "code-block"
+  | "list";
 
 type TypographyProps<T extends ElementType> = {
   as?: T;
@@ -24,13 +26,16 @@ const DISPLAY_CLASSES = {
   "heading-lg": "scroll-m-20 tracking-tight text-3xl font-semibold first:mt-0",
   "heading-md": "scroll-m-20 tracking-tight text-2xl font-semibold",
   "heading-sm": "scroll-m-20 tracking-tight text-xl font-semibold",
-  "body-lg": "text-lg font-semibold leading-7 [&:not(:first-child)]:mt-6",
-  "body-md": "leading-7 [&:not(:first-child)]:mt-6",
-  "body-sm": "text-sm font-medium leading-5 [&:not(:first-child)]:mt-6",
-  quote: "mt-6 border-l-2 pl-6 italic",
+  "body-lg": "text-lg font-semibold leading-7",
+  "body-md": "leading-7",
+  "body-sm": "text-sm font-medium leading-5",
+  quote: "mt-6 border-l-2 pl-6",
   code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
+  "code-block":
+    "mx-4 pl-2 relative rounded bg-muted py-[0.2rem] font-mono text-sm font-semibold overflow-x-auto text-nowrap",
+  list: "my-6 ml-6 list-disc [&>li]:mt-2",
 } as {
-  [k in DisplayVariant]: ClassValue;
+  [_ in DisplayVariant]: ClassValue;
 };
 
 export function Typography<C extends ElementType>({
@@ -41,7 +46,7 @@ export function Typography<C extends ElementType>({
   ...props
 }: TypographyProps<C>) {
   const Component = as || "span";
-  const Variant = display || "heading-sm";
+  const Variant = display || "body-md";
 
   return (
     <Component className={cn(DISPLAY_CLASSES[Variant], className)} {...props}>

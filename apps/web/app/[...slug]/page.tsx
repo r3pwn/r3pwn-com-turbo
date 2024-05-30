@@ -45,9 +45,6 @@ export default async function Page({ params }: Props) {
           breadcrumbs={pageBreadcrumbs}
         />
       )}
-      <div>{JSON.stringify(page)}</div>
-      <br />
-      <div>{JSON.stringify(page.content)}</div>
       {page.content?.map((block) => {
         switch (block.blockType) {
           case "rich-text":

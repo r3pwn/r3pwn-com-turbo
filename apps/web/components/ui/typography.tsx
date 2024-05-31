@@ -32,8 +32,8 @@ const DISPLAY_CLASSES = {
   quote: "mt-6 border-l-2 pl-6",
   code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
   "code-block":
-    "mx-4 pl-2 relative rounded bg-muted py-[0.2rem] font-mono text-sm font-semibold overflow-x-auto text-nowrap",
-  list: "my-6 ml-6 list-disc [&>li]:mt-2",
+    "mx-4 my-4 pl-1 relative rounded-lg bg-muted py-[0.2rem] font-mono text-sm font-semibold overflow-x-auto text-nowrap",
+  list: "my-4 ml-6 list-disc [&>li]:mt-2",
 } as {
   [_ in DisplayVariant]: ClassValue;
 };

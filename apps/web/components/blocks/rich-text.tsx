@@ -8,7 +8,7 @@ type RichTextProps = {
 
 export function RichText({ content }: RichTextProps) {
   return (
-    <div className="rich-text-root">
+    <div className="rich-text-root [&>p]:my-1">
       {content.root.children.map((child, index) => (
         <Fragment key={index}>
           <RichTextNode content={child as any} />

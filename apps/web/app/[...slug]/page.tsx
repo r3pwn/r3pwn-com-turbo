@@ -43,6 +43,7 @@ export default async function Page({ params }: Props) {
           title={page.title}
           subtitle={page.subtitle || ""}
           breadcrumbs={pageBreadcrumbs}
+          className="mb-6"
         />
       )}
       {page.content?.map((block) => {

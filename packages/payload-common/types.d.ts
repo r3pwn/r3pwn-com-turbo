@@ -80,7 +80,7 @@ export interface PageData {
   subtitle?: string | null;
   description: string;
   featuredImage?: number | PayloadMedia | null;
-  content?: RichTextBlock[] | null;
+  content?: (RichTextBlock | CardsBlock)[] | null;
   slug: string;
   postedDate: string;
   breadcrumbs?:
@@ -118,6 +118,22 @@ export interface RichTextBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'rich-text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardsBlock".
+ */
+export interface CardsBlock {
+  cards: {
+    title: string;
+    description?: string | null;
+    image: number | PayloadMedia;
+    link: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cards';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

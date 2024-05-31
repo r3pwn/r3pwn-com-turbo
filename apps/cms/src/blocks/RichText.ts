@@ -8,6 +8,7 @@ const RichText: Block = {
       name: 'content',
       type: 'richText',
       required: true,
+      maxDepth: 0,
     },
   ],
 }

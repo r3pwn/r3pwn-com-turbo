@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPageBySlug, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
 import { RichText } from "@/components/blocks/rich-text";
+import { Cards } from "@/components/blocks/cards";
 
 type Params = {
   slug: string[];
@@ -50,6 +51,12 @@ export default async function Page({ params }: Props) {
         switch (block.blockType) {
           case "rich-text":
             return <RichText key={block.id} content={block.content} />;
+          case "cards":
+            return <Cards key={block.id} cards={block.cards} />;
+          default:
+            return (
+              <div key={(block as any).id}>DEBUG: {JSON.stringify(block)}</div>
+            );
         }
       })}
     </div>

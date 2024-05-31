@@ -1,9 +1,10 @@
 import { CollectionConfig } from 'payload/types'
-import RichText from '../blocks/RichText'
 import { bustCache } from '../utils/cache-buster'
 import { PageData } from '@repo/payload-common/types'
 import { createBreadcrumbsField } from '@payloadcms/plugin-nested-docs'
 import { Breadcrumb } from '@payloadcms/plugin-nested-docs/types'
+import RichText from '@/blocks/RichText'
+import Cards from '@/blocks/Cards'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -62,7 +63,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'content',
               type: 'blocks',
-              blocks: [RichText],
+              blocks: [RichText, Cards],
             },
           ],
         },
@@ -138,7 +139,7 @@ export const Pages: CollectionConfig = {
           where: {
             slug: { equals: slugs.at(-1) },
           },
-          depth: 0,
+          depth: 1,
         })
         const matchingDoc = data.docs.find((doc) =>
           (doc as unknown as PageData).breadcrumbs?.some(

@@ -55,7 +55,11 @@ export default buildConfig({
     }),
     s3Storage({
       collections: {
-        media: true,
+        media: {
+          generateFileURL: ({ filename }) => {
+            return `${process.env.PUBLIC_MEDIA_PREFIX}/${filename}`
+          },
+        },
       },
       bucket: process.env.S3_BUCKET || '',
       config: {

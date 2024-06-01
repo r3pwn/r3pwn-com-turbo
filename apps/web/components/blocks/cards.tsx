@@ -17,14 +17,11 @@ type CardsProps = {
 
 export function Cards({ cards }: CardsProps) {
   return (
-    <div className="cards-block flex gap-4">
+    <div className="cards-block flex flex-wrap gap-4">
       {cards.map((card, index) => {
         return (
-          <Link href={card.link}>
-            <Card
-              className="w-[350px] transition-colors hover:bg-muted"
-              key={index}
-            >
+          <Link href={card.link} key={index}>
+            <Card className="min-w-[150px] max-w-[350px] transition-colors hover:bg-muted">
               <img
                 className="rounded-t-xl"
                 src={(card.image as PayloadMedia).url || ""}

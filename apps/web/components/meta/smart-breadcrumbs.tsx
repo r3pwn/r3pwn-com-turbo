@@ -26,7 +26,9 @@ export function SmartBreadcrumbs({
         {breadcrumbs.map((crumb, index) => (
           <Fragment key={index}>
             <BreadcrumbItem>
-              {index === breadcrumbs.length - 1 && <div>{crumb.label}</div>}
+              {index === breadcrumbs.length - 1 && (
+                <div className="text-primary">{crumb.label}</div>
+              )}
               {index !== breadcrumbs.length - 1 && (
                 <BreadcrumbLink href={crumb.url}>{crumb.label}</BreadcrumbLink>
               )}

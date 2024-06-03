@@ -1,10 +1,11 @@
+import { LinkTarget } from "@/lib/types";
 import { Typography } from "../ui/typography";
-import { BreadcrumbTarget, SmartBreadcrumbs } from "./smart-breadcrumbs";
+import { SmartBreadcrumbs } from "./smart-breadcrumbs";
 
-type PageHeaderProps = React.ComponentProps<"header"> & {
+type PageHeaderProps = React.ComponentProps<"div"> & {
   title: string;
   subtitle?: string;
-  breadcrumbs?: BreadcrumbTarget[];
+  breadcrumbs?: LinkTarget[];
 };
 
 export function PageHeader({
@@ -15,7 +16,7 @@ export function PageHeader({
   ...props
 }: PageHeaderProps) {
   return (
-    <header className={className} {...props}>
+    <div className={className} {...props}>
       {breadcrumbs && (
         <SmartBreadcrumbs breadcrumbs={breadcrumbs} className="mb-2" />
       )}
@@ -27,6 +28,6 @@ export function PageHeader({
           {subtitle}
         </Typography>
       )}
-    </header>
+    </div>
   );
 }

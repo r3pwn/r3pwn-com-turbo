@@ -6,14 +6,10 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
-
-export type BreadcrumbTarget = {
-  label: string;
-  url: string;
-};
+import { LinkTarget } from "@/lib/types";
 
 type SmartBreadcrumbProps = React.ComponentProps<"nav"> & {
-  breadcrumbs: BreadcrumbTarget[];
+  breadcrumbs: LinkTarget[];
 };
 
 export function SmartBreadcrumbs({

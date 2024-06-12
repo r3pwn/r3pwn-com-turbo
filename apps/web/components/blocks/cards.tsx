@@ -10,6 +10,7 @@ import {
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowForwardIos } from "@mui/icons-material";
+import Image from "next/image";
 
 type CardsProps = {
   cards: CardsBlock["cards"];
@@ -25,6 +26,9 @@ export function Cards({ cards }: CardsProps) {
               <img
                 className="rounded-t-xl"
                 src={(card.image as PayloadMedia).url || ""}
+                alt={(card.image as PayloadMedia).altText || ""}
+                width={350}
+                height={175}
               />
               <CardHeader>
                 <CardTitle>{card.title}</CardTitle>

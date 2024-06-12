@@ -31,6 +31,7 @@
     "aws-crt": "^1.21.2",
     "babel-plugin-react-compiler": "0.0.0-experimental-592953e-20240517",
     "cross-env": "^7.0.3",
+    "graphql": "^16.8.1",
     "next": "rc",
     "payload": "beta",
     "react": "rc",

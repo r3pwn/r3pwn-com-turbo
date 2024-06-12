@@ -6,6 +6,9 @@ export const Navigation: GlobalConfig = {
   typescript: {
     interface: 'NavigationData',
   },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'header',

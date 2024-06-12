@@ -15,6 +15,9 @@ export const Pages: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'description'],
   },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       type: 'tabs',

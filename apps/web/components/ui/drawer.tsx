@@ -6,6 +6,7 @@ import { Drawer as DrawerPrimitive } from "vaul";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { CloseOutlined } from "@mui/icons-material";
+import type { DialogPortalProps } from "@radix-ui/react-dialog";
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -21,7 +22,7 @@ Drawer.displayName = "Drawer";
 
 const DrawerTrigger = DrawerPrimitive.Trigger;
 
-const DrawerPortal = DrawerPrimitive.Portal;
+const DrawerPortal = DrawerPrimitive.Portal as React.FC<DialogPortalProps>;
 
 const DrawerClose = DrawerPrimitive.Close;
 

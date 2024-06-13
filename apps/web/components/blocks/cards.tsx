@@ -1,7 +1,6 @@
 import { CardsBlock, PayloadMedia } from "@repo/payload-common/types";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -10,7 +9,6 @@ import {
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowForwardIos } from "@mui/icons-material";
-import Image from "next/image";
 
 type CardsProps = {
   cards: CardsBlock["cards"];

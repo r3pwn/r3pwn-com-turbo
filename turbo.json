@@ -1,7 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": [".env", "**/.env.*local", "**/*.tsconfig.json"],
-  "tasks": {
+  "globalDotEnv": [".env"],
+  "pipeline": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]

@@ -66,6 +66,11 @@
   }
 }
 
+body {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
 @layer base {
   * {
     @apply border-border;

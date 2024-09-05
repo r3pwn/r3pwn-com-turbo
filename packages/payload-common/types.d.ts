@@ -16,6 +16,7 @@ export interface Config {
   };
   globals: {
     navigation: NavigationData;
+    tools: Tool;
   };
   locale: null;
   user: User & {
@@ -208,6 +209,15 @@ export interface FooterData {
       }[]
     | null;
   copyrightText?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: number;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 

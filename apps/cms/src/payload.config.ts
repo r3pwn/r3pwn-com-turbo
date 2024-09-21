@@ -19,7 +19,6 @@ import { Pages } from './collections/Pages'
 
 // globals
 import { Navigation } from './globals/Navigation'
-import { Tools } from './globals/Tools'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -29,7 +28,7 @@ export default buildConfig({
     user: Users.slug,
   },
   collections: [Users, Media, Pages],
-  globals: [Navigation, Tools],
+  globals: [Navigation],
   editor: lexicalEditor({
     features: ({ defaultFeatures, rootFeatures }) => [
       ...defaultFeatures,

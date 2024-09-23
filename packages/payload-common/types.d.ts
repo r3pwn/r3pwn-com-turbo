@@ -7,9 +7,6 @@
  */
 
 export interface Config {
-  auth: {
-    users: UserAuthOperations;
-  };
   collections: {
     users: User;
     media: PayloadMedia;
@@ -17,33 +14,13 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  db: {
-    defaultIDType: number;
-  };
   globals: {
     navigation: NavigationData;
+    tools: Tool;
   };
   locale: null;
   user: User & {
     collection: 'users';
-  };
-}
-export interface UserAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
   };
 }
 /**
@@ -103,7 +80,7 @@ export interface PageData {
   title: string;
   subtitle?: string | null;
   description: string;
-  featuredImage?: (number | null) | PayloadMedia;
+  featuredImage?: number | PayloadMedia | null;
   content?: (RichTextBlock | CardsBlock)[] | null;
   slug: string;
   postedDate: string;
@@ -235,10 +212,12 @@ export interface FooterData {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "auth".
+ * via the `definition` "tools".
  */
-export interface Auth {
-  [k: string]: unknown;
+export interface Tool {
+  id: number;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 

@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload/types'
 import { bustCache } from '../utils/cache-buster'
 import { PageData } from '@repo/payload-common/types'
 import { createBreadcrumbsField } from '@payloadcms/plugin-nested-docs'

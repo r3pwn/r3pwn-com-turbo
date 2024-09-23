@@ -5,7 +5,7 @@ import {
   lexicalEditor,
   LinkFeature,
 } from '@payloadcms/richtext-lexical'
-import { buildConfig } from 'payload/config'
+import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'

@@ -7,6 +7,7 @@
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "dev": "dotenvx run -f .env.local -- cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev:prod": "dotenvx run -f .env -- cross-env NODE_OPTIONS=--no-deprecation next dev",
     "devsafe": "rm -rf .next && dotenvx run -f .env.local -- cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",

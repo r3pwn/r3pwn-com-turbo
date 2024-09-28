@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "dotenvx run -f .env.local -- next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0"
@@ -11,6 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.10.5",
     "@apollo/experimental-nextjs-app-support": "^0.11.2",
+    "@dotenvx/dotenvx": "^1.14.2",
     "@mui/icons-material": "^5.15.20",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-icons": "^1.3.0",

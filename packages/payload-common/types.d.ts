@@ -11,9 +11,10 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    pages: Page;
+    media: Media;
     users: User;
-    media: PayloadMedia;
-    pages: PageData;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -48,6 +49,65 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: string | null;
+  title: string;
+  subtitle?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  breadcrumbs?:
+    | {
+        doc?: (number | null) | Page;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  parent?: (number | null) | Page;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -65,99 +125,30 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "payload-locked-documents".
  */
-export interface PayloadMedia {
+export interface PayloadLockedDocument {
   id: number;
-  altText?: string | null;
+  document?:
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
- */
-export interface PageData {
-  id: number;
-  showHeader?: boolean | null;
-  showBreadcrumbs?: boolean | null;
-  title: string;
-  subtitle?: string | null;
-  description: string;
-  featuredImage?: (number | null) | PayloadMedia;
-  content?: (RichTextBlock | CardsBlock)[] | null;
-  slug: string;
-  postedDate: string;
-  breadcrumbs?:
-    | {
-        doc?: (number | null) | PageData;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  parent?: (number | null) | PageData;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "RichTextBlock".
- */
-export interface RichTextBlock {
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'rich-text';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardsBlock".
- */
-export interface CardsBlock {
-  cards: {
-    title: string;
-    description?: string | null;
-    image: number | PayloadMedia;
-    link: string;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cards';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -199,39 +190,31 @@ export interface PayloadMigration {
  */
 export interface NavigationData {
   id: number;
-  header?: HeaderData;
-  footer?: FooterData;
+  header?: {
+    navigationLinks?:
+      | {
+          label: string;
+          target: number | Page;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  footer?: {
+    socialLinks?:
+      | {
+          ariaLabel?: string | null;
+          url?: string | null;
+          icon?:
+            | ('email' | 'facebook' | 'github' | 'instagram' | 'linkedin' | 'reddit' | 'telegram' | 'twitter')
+            | null;
+          openInNewTab?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+    copyrightText?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeaderData".
- */
-export interface HeaderData {
-  navigationLinks?:
-    | {
-        label: string;
-        target: number | PageData;
-        id?: string | null;
-      }[]
-    | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FooterData".
- */
-export interface FooterData {
-  socialLinks?:
-    | {
-        ariaLabel?: string | null;
-        url?: string | null;
-        icon?: ('email' | 'facebook' | 'github' | 'instagram' | 'linkedin' | 'reddit' | 'telegram' | 'twitter') | null;
-        openInNewTab?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  copyrightText?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

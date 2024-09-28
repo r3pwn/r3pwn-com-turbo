@@ -1,6 +1,6 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 
-/** @type{import('next').NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   // Your Next.js config here
   async redirects() {
@@ -14,7 +14,7 @@ const nextConfig = {
   },
   experimental: {
     reactCompiler: true,
-  },
+  }
 }
 
 export default withPayload(nextConfig)

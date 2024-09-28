@@ -1,28 +1,16 @@
-import { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
-  typescript: {
-    interface: 'PayloadMedia',
+  access: {
+    read: () => true,
   },
   fields: [
     {
-      name: 'altText',
+      name: 'alt',
       type: 'text',
-      required: false,
+      required: true,
     },
   ],
-  upload: {
-    disableLocalStorage: true,
-    mimeTypes: ['image/*'],
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 400,
-        height: 300,
-        position: 'centre',
-      },
-    ],
-    adminThumbnail: 'thumbnail',
-  },
+  upload: true,
 }

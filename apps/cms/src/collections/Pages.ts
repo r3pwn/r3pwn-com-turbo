@@ -9,6 +9,7 @@ export const Pages: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
+    defaultColumns: ['title', 'subtitle'],
   },
   fields: [
     SlugAsIdField((doc) => doc.title),
@@ -24,6 +25,9 @@ export const Pages: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      admin: {
+        disableListColumn: true,
+      },
     },
     createBreadcrumbsField('pages', {
       admin: {

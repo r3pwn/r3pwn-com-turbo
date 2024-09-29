@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { getPageBySlug, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
 import { RichText } from "@/components/blocks/rich-text";
-import { Cards } from "@/components/blocks/cards";
 
 type Params = {
   slug: string[];
@@ -21,44 +20,34 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: Props) {
   const { slug } = params;
-  const page = await getPageBySlug(slug);
+  const page = await getPageBySlug(slug.at(-1) || "");
 
   if (!page) {
     return notFound();
   }
 
-  const pageBreadcrumbs = page.showBreadcrumbs
-    ? [
-        { label: "Home", url: "/" },
-        ...page.breadcrumbs!.map((crumb) => ({
-          label: crumb.label || "",
-          url: crumb.url || "",
-        })),
-      ]
-    : undefined;
+  const showHeader = !!page.title && !!page.subtitle;
+  const pageBreadcrumbs = [
+    { label: "Home", url: "/" },
+    ...page.breadcrumbs!.map((crumb) => ({
+      label: crumb.label || "",
+      url: crumb.url || "",
+    })),
+  ];
 
   return (
     <div>
-      {page.showHeader && (
+      {showHeader ? (
         <PageHeader
           title={page.title}
           subtitle={page.subtitle || ""}
           breadcrumbs={pageBreadcrumbs}
           className="mb-6"
         />
+      ) : (
+        <></>
       )}
-      {page.content?.map((block) => {
-        switch (block.blockType) {
-          case "rich-text":
-            return <RichText key={block.id} content={block.content} />;
-          case "cards":
-            return <Cards key={block.id} cards={block.cards} />;
-          default:
-            return (
-              <div key={(block as any).id}>DEBUG: {JSON.stringify(block)}</div>
-            );
-        }
-      })}
+      <RichText content={page.content} />
     </div>
   );
 }

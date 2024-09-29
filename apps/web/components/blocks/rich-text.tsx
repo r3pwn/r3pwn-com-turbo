@@ -1,10 +1,11 @@
-//import { RichTextBlock } from "@repo/payload-common/types";
 import { ElementType, Fragment } from "react";
 import { DisplayVariant, Typography } from "../ui/typography";
+import { Page } from "@repo/payload-common/types";
+
+type RichTextContent = Page["content"];
 
 type RichTextProps = {
-  // content: RichTextBlock["content"];
-  content: any;
+  content: RichTextContent;
 };
 
 export function RichText({ content }: RichTextProps) {
@@ -47,7 +48,7 @@ const HeadingVariants = {
 } as { [_: string]: DisplayVariant };
 
 type ContainerNodeProps = {
-  content: RichTextBlock["content"]["root"];
+  content: NonNullable<RichTextContent>["root"];
   as?: ElementType;
   display?: DisplayVariant;
   className?: string;

@@ -55,8 +55,8 @@ export function SiteHeader({ links, ...props }: SiteHeaderProps) {
         className="p-1 m-2 w-12 h-12 max-md:ml-0"
         asChild
       >
-        <Link href="/">
-          <img src="/apple-touch-icon.png" />
+        <Link href="/" aria-label="Home page">
+          <img aria-hidden height={40} width={40} src="/apple-touch-icon.png" />
         </Link>
       </Button>
       <div className="mt-auto mb-auto ml-4 gap-2 flex max-md:hidden">

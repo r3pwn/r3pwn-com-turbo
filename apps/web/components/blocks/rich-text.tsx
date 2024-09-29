@@ -1,6 +1,6 @@
 import { ElementType, Fragment } from "react";
 import { DisplayVariant, Typography } from "../ui/typography";
-import { Page } from "@repo/payload-common/types";
+import { Media, Page } from "@repo/payload-common/types";
 
 type RichTextContent = Page["content"];
 
@@ -47,8 +47,10 @@ const HeadingVariants = {
   h4: "heading-sm",
 } as { [_: string]: DisplayVariant };
 
+type ContainerContent<T> = NonNullable<RichTextContent>["root"] & { value: T };
+
 type ContainerNodeProps = {
-  content: NonNullable<RichTextContent>["root"];
+  content: ContainerContent<null>;
   as?: ElementType;
   display?: DisplayVariant;
   className?: string;
@@ -57,6 +59,15 @@ type ContainerNodeProps = {
 function RichTextNode({ content }: ContainerNodeProps) {
   let componentTag = (content as any).tag;
   switch (content.type) {
+    case "upload":
+      const image = (content as unknown as ContainerContent<Media>).value;
+      return (
+        <img
+          height={image.height || 1}
+          width={image.width || 1}
+          src={image.url || ""}
+        ></img>
+      );
     case "heading":
       return (
         <ContainerNode

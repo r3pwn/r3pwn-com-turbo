@@ -51,6 +51,7 @@ export default buildConfig({
   // use sqlite adapter in development, mongodb adapter in prod
   db: process.env.DATABASE_URI?.startsWith('file:')
     ? sqliteAdapter({
+        idType: 'uuid',
         client: {
           url: process.env.DATABASE_URI || '',
         },

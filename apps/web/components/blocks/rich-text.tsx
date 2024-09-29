@@ -1,15 +1,20 @@
-import { RichTextBlock } from "@repo/payload-common/types";
+//import { RichTextBlock } from "@repo/payload-common/types";
 import { ElementType, Fragment } from "react";
 import { DisplayVariant, Typography } from "../ui/typography";
 
 type RichTextProps = {
-  content: RichTextBlock["content"];
+  // content: RichTextBlock["content"];
+  content: any;
 };
 
 export function RichText({ content }: RichTextProps) {
+  if (!content?.root) {
+    return <></>;
+  }
+
   return (
     <div className="rich-text-root [&>p]:my-1">
-      {content.root.children.map((child, index) => (
+      {content.root.children.map((child: any, index: number) => (
         <Fragment key={index}>
           <RichTextNode content={child as any} />
         </Fragment>

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getPageBySlug, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
-import { RichText } from "@/components/blocks/rich-text";
+import { PageContent } from "@/components/meta/page-content";
 
 type Params = {
   slug: string[];
@@ -47,7 +47,7 @@ export default async function Page({ params }: Props) {
       ) : (
         <></>
       )}
-      <RichText content={page.content} />
+      <PageContent content={page.content} />
     </div>
   );
 }

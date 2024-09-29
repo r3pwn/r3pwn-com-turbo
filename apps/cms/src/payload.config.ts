@@ -1,5 +1,5 @@
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
-import { postgresAdapter } from '@payloadcms/db-postgres'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import {
   FixedToolbarFeature,
   InlineCodeFeature,
@@ -19,7 +19,7 @@ import { Navigation } from './globals/Navigation'
 import { fieldsSelect } from '@payload-enchants/fields-select'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
-import { s3Storage } from '@payloadcms/storage-s3'
+import { gcsStorage } from '@payloadcms/storage-gcs'
 
 import { generatePreviewUrl } from './utils/seo-helpers'
 
@@ -48,17 +48,15 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, '../../../packages/payload-common/types.d.ts'),
   },
-  // use sqlite adapter in development, postgres adapter in prod
+  // use sqlite adapter in development, mongodb adapter in prod
   db: process.env.DATABASE_URI?.startsWith('file:')
     ? sqliteAdapter({
         client: {
           url: process.env.DATABASE_URI || '',
         },
       })
-    : postgresAdapter({
-        pool: {
-          connectionString: process.env.DATABASE_URI || '',
-        },
+    : mongooseAdapter({
+        url: process.env.DATABASE_URI || '',
       }),
   sharp,
   plugins: [
@@ -77,26 +75,18 @@ export default buildConfig({
       // add the breadcrumbs field manually on the collection, but hidden from the UI
       breadcrumbsFieldSlug: 'breadcrumbs',
     }),
-    // add s3 plugin in prod only
-    ...(process.env.S3_SECRET_KEY
+    // add gcs plugin in prod only
+    ...(process.env.GCS_BUCKET
       ? [
-          s3Storage({
+          gcsStorage({
             collections: {
               media: {
-                generateFileURL: ({ filename }) => {
-                  return `${process.env.PUBLIC_MEDIA_PREFIX}/${filename}`
-                },
+                generateFileURL: ({ filename }) => `${process.env.PUBLIC_MEDIA_PREFIX}/${filename}`,
               },
             },
-            bucket: process.env.S3_BUCKET || '',
-            config: {
-              credentials: {
-                accessKeyId: process.env.S3_ACCESS_KEY || '',
-                secretAccessKey: process.env.S3_SECRET_KEY || '',
-              },
-              region: process.env.S3_REGION || '',
-              endpoint: process.env.S3_ENDPOINT || '',
-              forcePathStyle: true,
+            bucket: process.env.GCS_BUCKET,
+            options: {
+              credentials: JSON.parse((process.env.GCS_CREDENTIALS as string) || '{}'),
             },
           }),
         ]

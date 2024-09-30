@@ -3,7 +3,7 @@ import { DisplayVariant, Typography } from "../ui/typography";
 import { HeadingVariants, TextFormatClasses, TextFormats } from "./constants";
 import { type Media, type Page } from "@repo/payload-common/types";
 import { ImageNode } from "./image-node";
-import { CardNode } from "./card-node";
+import { CardGroupNode } from "./card-group-node";
 
 type RichTextContent = Page["content"];
 
@@ -27,8 +27,13 @@ export function RichTextNode({ content }: ContainerNodeProps) {
       return <ImageNode content={(content as ContainerContent<Media>).value} />;
     case "block":
       switch (content.fields?.blockType) {
-        case "card":
-          return <CardNode card={content.fields} />;
+        case "card-group":
+          return (
+            <CardGroupNode
+              displayStyle={content.fields.displayStyle}
+              cards={content.fields.cards}
+            />
+          );
       }
       return <Typography>DEBUG: {JSON.stringify(content)}</Typography>;
     case "heading":

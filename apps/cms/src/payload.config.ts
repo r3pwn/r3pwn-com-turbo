@@ -23,7 +23,7 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { gcsStorage } from '@payloadcms/storage-gcs'
 
 import { generatePreviewUrl } from './utils/seo-helpers'
-import { Card } from './blocks/Card'
+import { Card } from './blocks/CardGroup'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

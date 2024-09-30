@@ -221,13 +221,19 @@ export interface NavigationData {
  * via the `definition` "CardBlock".
  */
 export interface CardBlock {
-  title: string;
-  description?: string | null;
-  image?: (string | null) | Media;
-  link?: (string | null) | Page;
+  displayStyle?: ('flex' | 'scrollView') | null;
+  cards?:
+    | {
+        title: string;
+        description?: string | null;
+        image?: (string | null) | Media;
+        link?: (string | null) | Page;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'card';
+  blockType: 'card-group';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

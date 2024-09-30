@@ -24,7 +24,7 @@ const walkContentNodes = async (node: ContentNode) => {
 
   await generateLinks(node)
   await populateMedia(node)
-  await populateBlock(node)
+  await populateBlocks(node)
 }
 
 const generateLinks = async (node: ContentNode) => {
@@ -61,37 +61,84 @@ const populateMedia = async (node: ContentNode) => {
   node.value = linkedMedia
 }
 
-const populateBlock = async (node: ContentNode) => {
-  if (node.type !== 'block' || node.fields?.blockType !== 'card') {
+const populateBlocks = async (node: ContentNode) => {
+  if (node.type !== 'block') {
     return
   }
 
-  const imageId = node.fields?.image
+  await populateCardGroup(node)
+}
 
-  if (imageId) {
-    const linkedMedia = (await payload.findByID({
-      collection: 'media',
-      id: imageId as string | number,
-      context: {
-        select: ['alt', 'url'],
-      },
-    })) as Page
-
-    node.fields.image = linkedMedia
+const populateCardGroup = async (node: ContentNode) => {
+  if (node.fields?.blockType !== 'card-group') {
+    return
   }
 
-  const linkId = node.fields?.link
+  const imageIds = []
+  const linkIds = []
 
-  if (linkId) {
-    const linkedPage = (await payload.findByID({
-      collection: 'pages',
-      id: linkId as string,
+  for (let card of node.fields.cards as any[]) {
+    if (card?.image) {
+      imageIds.push(card?.image)
+    }
+    if (card?.link) {
+      linkIds.push(card?.link)
+    }
+  }
+
+  let images = {} as any
+
+  if (imageIds.length) {
+    const imagesResponse = await payload.find({
+      collection: 'media',
       context: {
-        select: ['breadcrumbs'],
+        select: ['id', 'alt', 'url'],
       },
-    })) as Page
+      where: {
+        or: imageIds.map((imageId) => ({
+          id: {
+            equals: imageId,
+          },
+        })),
+      },
+    })
 
-    node.fields.link = linkedPage.breadcrumbs?.at(-1)?.url || '/404'
+    images = imagesResponse.docs.reduce((previous, doc) => {
+      previous[doc.id] = doc
+      return previous
+    }, {} as any)
+  }
+
+  let links = {} as any
+
+  if (linkIds.length) {
+    const linksResponse = await payload.find({
+      collection: 'pages',
+      context: {
+        select: ['id', 'breadcrumbs'],
+      },
+      where: {
+        or: linkIds.map((linkId) => ({
+          id: {
+            equals: linkId,
+          },
+        })),
+      },
+    })
+
+    links = linksResponse.docs.reduce((previous, doc) => {
+      previous[doc.id] = doc
+      return previous
+    }, {} as any)
+  }
+
+  for (let card of node.fields.cards as any[]) {
+    if (card?.image) {
+      card.image = images[card.image as number]
+    }
+    if (card?.link) {
+      card.link = links[card.link as string].breadcrumbs?.at(-1)?.url || '/404'
+    }
   }
 }
 

@@ -3,11 +3,13 @@ import { DisplayVariant, Typography } from "../ui/typography";
 import { HeadingVariants, TextFormatClasses, TextFormats } from "./constants";
 import { type Media, type Page } from "@repo/payload-common/types";
 import { ImageNode } from "./image-node";
+import { CardNode } from "./card-node";
 
 type RichTextContent = Page["content"];
 
 export type ContainerContent<T> = NonNullable<RichTextContent>["root"] & {
   value: T;
+  fields?: any;
 };
 
 type ContainerNodeProps = {
@@ -18,10 +20,17 @@ type ContainerNodeProps = {
 };
 
 export function RichTextNode({ content }: ContainerNodeProps) {
-  let componentTag = (content as any).tag;
+  const componentTag = (content as any).tag;
+
   switch (content.type) {
     case "upload":
       return <ImageNode content={(content as ContainerContent<Media>).value} />;
+    case "block":
+      switch (content.fields?.blockType) {
+        case "card":
+          return <CardNode card={content.fields} />;
+      }
+      return <Typography>DEBUG: {JSON.stringify(content)}</Typography>;
     case "heading":
       return (
         <ContainerNode

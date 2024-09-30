@@ -21,7 +21,12 @@ export function SiteHeader({ links, ...props }: SiteHeaderProps) {
     <header className="border-b-2 flex" {...props}>
       <Drawer>
         <DrawerTrigger asChild className="hidden max-md:flex">
-          <Button variant="ghost" size="icon" className="p-1 m-2 w-12 h-12">
+          <Button
+            aria-label="Open site menu"
+            variant="ghost"
+            size="icon"
+            className="p-1 m-2 w-12 h-12"
+          >
             <HamburgerMenuIcon height={24} width={24} />
           </Button>
         </DrawerTrigger>

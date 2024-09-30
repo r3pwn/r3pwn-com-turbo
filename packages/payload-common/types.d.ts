@@ -218,6 +218,19 @@ export interface NavigationData {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardBlock".
+ */
+export interface CardBlock {
+  title: string;
+  description?: string | null;
+  image?: (string | null) | Media;
+  link?: (string | null) | Page;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'card';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

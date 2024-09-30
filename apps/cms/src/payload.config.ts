@@ -1,6 +1,7 @@
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import {
+  BlocksFeature,
   FixedToolbarFeature,
   InlineCodeFeature,
   lexicalEditor,
@@ -22,6 +23,7 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { gcsStorage } from '@payloadcms/storage-gcs'
 
 import { generatePreviewUrl } from './utils/seo-helpers'
+import { Card } from './blocks/Card'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -39,6 +41,9 @@ export default buildConfig({
     features: ({ defaultFeatures, rootFeatures }) => [
       ...defaultFeatures,
       ...rootFeatures,
+      BlocksFeature({
+        blocks: [Card],
+      }),
       FixedToolbarFeature(),
       InlineCodeFeature(),
       LinkFeature(),

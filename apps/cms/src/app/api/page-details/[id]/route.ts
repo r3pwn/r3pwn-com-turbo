@@ -24,6 +24,7 @@ const walkContentNodes = async (node: ContentNode) => {
 
   await generateLinks(node)
   await populateMedia(node)
+  await populateBlock(node)
 }
 
 const generateLinks = async (node: ContentNode) => {
@@ -58,6 +59,40 @@ const populateMedia = async (node: ContentNode) => {
   })) as Page
 
   node.value = linkedMedia
+}
+
+const populateBlock = async (node: ContentNode) => {
+  if (node.type !== 'block' || node.fields?.blockType !== 'card') {
+    return
+  }
+
+  const imageId = node.fields?.image
+
+  if (imageId) {
+    const linkedMedia = (await payload.findByID({
+      collection: 'media',
+      id: imageId as string | number,
+      context: {
+        select: ['alt', 'url'],
+      },
+    })) as Page
+
+    node.fields.image = linkedMedia
+  }
+
+  const linkId = node.fields?.link
+
+  if (linkId) {
+    const linkedPage = (await payload.findByID({
+      collection: 'pages',
+      id: linkId as string,
+      context: {
+        select: ['breadcrumbs'],
+      },
+    })) as Page
+
+    node.fields.link = linkedPage.breadcrumbs?.at(-1)?.url || '/404'
+  }
 }
 
 export const GET = async (_: Request, { params }: { params: { id: string } }) => {

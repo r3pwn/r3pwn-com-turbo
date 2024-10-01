@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import { getPageBySlug, getPageList } from "../../providers/contentProvider";
+import { getPageByUrl, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
 import { PageContent } from "@/components/meta/page-content";
 
 type Params = {
-  slug: string[];
+  slugs: string[];
 };
 
 type Props = {
@@ -19,8 +19,8 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  const { slug } = params;
-  const page = await getPageBySlug(slug.at(-1) || "");
+  const { slugs } = params;
+  const page = await getPageByUrl(`/${slugs.join("/")}`);
 
   if (!page) {
     return notFound();

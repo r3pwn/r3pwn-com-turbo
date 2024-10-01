@@ -40,8 +40,10 @@ export const getPageList = async () => {
   }));
 };
 
-export const getPageBySlug = async (id: string) => {
-  const res = await fetch(`${CMS_HOST}/api/page-details/${id}`);
+export const getPageByUrl = async (url: string) => {
+  const res = await fetch(
+    `${CMS_HOST}/api/page-details/${encodeURIComponent(url)}`
+  );
   return (await res.json()) as Page;
 };
 

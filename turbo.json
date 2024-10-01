@@ -5,6 +5,23 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "cms#build": {
+      "dependsOn": ["^build"],
+      "env": [
+        "DATABASE_URI",
+        "PAYLOAD_SECRET",
+        "GCS_CREDENTIALS",
+        "GCS_BUCKET",
+        "PUBLIC_MEDIA_PREFIX",
+        "SITE_HOST"
+      ],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "web#build": {
+      "dependsOn": ["^build"],
+      "env": ["CMS_HOST", "SITE_HOST"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },

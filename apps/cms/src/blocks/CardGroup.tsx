@@ -1,6 +1,6 @@
 import type { Block } from 'payload'
 
-export const Card: Block = {
+export const CardGroup: Block = {
   slug: 'card-group',
   interfaceName: 'CardGroupBlock',
   fields: [

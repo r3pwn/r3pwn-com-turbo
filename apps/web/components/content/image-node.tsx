@@ -1,10 +1,10 @@
 import { type Media } from "@repo/payload-common/types";
 
-type ImageNodeProps = {
+type Props = {
   content: Media;
 };
 
-export function ImageNode({ content }: ImageNodeProps) {
+export function ImageNode({ content }: Props) {
   if (!content.url) {
     return <></>;
   }

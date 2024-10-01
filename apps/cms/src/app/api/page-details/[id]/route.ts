@@ -67,6 +67,7 @@ const populateBlocks = async (node: ContentNode) => {
   }
 
   await populateCardGroup(node)
+  await populateImageCarousel(node)
 }
 
 const populateCardGroup = async (node: ContentNode) => {
@@ -138,6 +139,48 @@ const populateCardGroup = async (node: ContentNode) => {
     }
     if (card?.link) {
       card.link = links[card.link as string].breadcrumbs?.at(-1)?.url || '/404'
+    }
+  }
+}
+
+const populateImageCarousel = async (node: ContentNode) => {
+  if (node.fields?.blockType !== 'image-carousel') {
+    return
+  }
+
+  const imageIds = []
+  for (let imageObj of node.fields.images as any[]) {
+    if (imageObj?.image) {
+      imageIds.push(imageObj?.image)
+    }
+  }
+
+  let images = {} as any
+
+  if (imageIds.length) {
+    const imagesResponse = await payload.find({
+      collection: 'media',
+      context: {
+        select: ['id', 'alt', 'url'],
+      },
+      where: {
+        or: imageIds.map((imageId) => ({
+          id: {
+            equals: imageId,
+          },
+        })),
+      },
+    })
+
+    images = imagesResponse.docs.reduce((previous, doc) => {
+      previous[doc.id] = doc
+      return previous
+    }, {} as any)
+  }
+
+  for (let imageObj of node.fields.images as any[]) {
+    if (imageObj?.image) {
+      imageObj.image = images[imageObj.image as number]
     }
   }
 }

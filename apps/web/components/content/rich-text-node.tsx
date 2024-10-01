@@ -4,6 +4,7 @@ import { HeadingVariants, TextFormatClasses, TextFormats } from "./constants";
 import { type Media, type Page } from "@repo/payload-common/types";
 import { ImageNode } from "./image-node";
 import { CardGroupNode } from "./card-group-node";
+import { ImageCarouselNode } from "./image-carousel-node";
 
 type RichTextContent = Page["content"];
 
@@ -29,6 +30,14 @@ export function RichTextNode({ content }: ContainerNodeProps) {
       switch (content.fields?.blockType) {
         case "card-group":
           return <CardGroupNode cards={content.fields.cards} />;
+        case "image-carousel":
+          return (
+            <ImageCarouselNode
+              images={content.fields?.images?.map(
+                (imageObj: { image: Media }) => imageObj.image
+              )}
+            />
+          );
       }
       return <Typography>DEBUG: {JSON.stringify(content)}</Typography>;
     case "heading":

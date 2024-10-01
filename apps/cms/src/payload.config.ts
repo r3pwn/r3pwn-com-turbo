@@ -22,8 +22,10 @@ import { seoPlugin } from '@payloadcms/plugin-seo'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { gcsStorage } from '@payloadcms/storage-gcs'
 
+import { CardGroup } from './blocks/CardGroup'
+import { ImageCarousel } from './blocks/ImageCarousel'
+
 import { generatePreviewUrl } from './utils/seo-helpers'
-import { Card } from './blocks/CardGroup'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -42,7 +44,7 @@ export default buildConfig({
       ...defaultFeatures,
       ...rootFeatures,
       BlocksFeature({
-        blocks: [Card],
+        blocks: [CardGroup, ImageCarousel],
       }),
       FixedToolbarFeature(),
       InlineCodeFeature(),

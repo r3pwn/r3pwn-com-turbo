@@ -1,4 +1,3 @@
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import {
   BlocksFeature,
@@ -55,17 +54,9 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, '../../../packages/payload-common/types.d.ts'),
   },
-  // use sqlite adapter in development, mongodb adapter in prod
-  db: process.env.DATABASE_URI?.startsWith('file:')
-    ? sqliteAdapter({
-        idType: 'uuid',
-        client: {
-          url: process.env.DATABASE_URI || '',
-        },
-      })
-    : mongooseAdapter({
-        url: process.env.DATABASE_URI || '',
-      }),
+  db: mongooseAdapter({
+    url: process.env.DATABASE_URI || '',
+  }),
   sharp,
   plugins: [
     fieldsSelect({ selectIDByDefault: true }),
@@ -83,7 +74,7 @@ export default buildConfig({
       // add the breadcrumbs field manually on the collection, but hidden from the UI
       breadcrumbsFieldSlug: 'breadcrumbs',
     }),
-    // add gcs plugin in prod only
+    // add gcs plugin only if GCS env vars are passed
     ...(process.env.GCS_BUCKET
       ? [
           gcsStorage({

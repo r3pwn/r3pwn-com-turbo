@@ -25,6 +25,7 @@ import { CardGroup } from './blocks/CardGroup'
 import { ImageCarousel } from './blocks/ImageCarousel'
 
 import { generatePreviewUrl } from './utils/seo-helpers'
+import { slugify } from './utils/string-helpers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -70,7 +71,7 @@ export default buildConfig({
     nestedDocsPlugin({
       collections: ['pages'],
       generateLabel: (_, doc) => doc.title as string,
-      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.id}`, ''),
+      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug as string}`, ''),
       // add the breadcrumbs field manually on the collection, but hidden from the UI
       breadcrumbsFieldSlug: 'breadcrumbs',
     }),

@@ -1,7 +1,7 @@
 import configPromise from '@payload-config'
 import { LinkFields } from '@payloadcms/richtext-lexical'
 import { Page } from '@repo/payload-common/types'
-import { getPayload } from 'payload'
+import { getPayload, PaginatedDocs } from 'payload'
 
 type ContentNode = {
   type: string
@@ -185,12 +185,31 @@ const populateImageCarousel = async (node: ContentNode) => {
   }
 }
 
-export const GET = async (_: Request, { params }: { params: { id: string } }) => {
-  const data = (await payload.findByID({
+export const GET = async (_: Request, { params }: { params: { url: string } }) => {
+  console.log(params.url)
+  const docs = (await payload.find({
     collection: 'pages',
-    id: params.id,
     depth: 0,
-  })) as Page
+    limit: 1,
+    where: {
+      url: {
+        equals: params.url,
+      },
+    },
+  })) as PaginatedDocs<Page>
+
+  if (!docs?.docs?.length) {
+    return Response.json(
+      {
+        error: 'Page not found',
+      },
+      {
+        status: 404,
+      },
+    )
+  }
+
+  const data = docs.docs[0]
 
   if (data.content) {
     for (let node of data.content.root.children) {

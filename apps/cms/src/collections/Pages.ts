@@ -1,4 +1,5 @@
-import { SlugAsIdField } from '@/fields/slug-as-id'
+import { UrlSlugField } from '@/fields/url-slug'
+import { slugify } from '@/utils/string-helpers'
 import { createBreadcrumbsField } from '@payloadcms/plugin-nested-docs'
 import type { CollectionConfig } from 'payload'
 
@@ -13,7 +14,6 @@ export const Pages: CollectionConfig = {
     defaultColumns: ['title', 'subtitle'],
   },
   fields: [
-    SlugAsIdField((doc) => doc.title),
     {
       name: 'title',
       type: 'text',
@@ -35,5 +35,23 @@ export const Pages: CollectionConfig = {
         hidden: true,
       },
     }),
+    UrlSlugField(),
+    {
+      name: 'slug',
+      type: 'text',
+      admin: {
+        hidden: true,
+      },
+      hooks: {
+        beforeChange: [
+          ({ data, operation }) => {
+            if (!data || operation !== 'create') {
+              return
+            }
+            data.slug = slugify(data.title)
+          },
+        ],
+      },
+    },
   ],
 }

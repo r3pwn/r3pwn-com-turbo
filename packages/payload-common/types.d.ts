@@ -52,7 +52,7 @@ export interface UserAuthOperations {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: string | null;
+  id: string;
   title: string;
   subtitle?: string | null;
   content?: {
@@ -78,6 +78,8 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  url?: string | null;
+  slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;

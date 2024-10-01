@@ -1,0 +1,15 @@
+@tailwind utilities;
+
+.rich-text-root > .content-image {
+  width: 100%;
+  @media screen(md) {
+    width: 80%;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.rich-text-root > *:is(h2, h3, h4, h5, h6) {
+  padding-top: 1rem;
+}

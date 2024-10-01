@@ -1,9 +1,10 @@
-import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { SiteHeader } from "@/components/meta/site-header";
 import { getNavigation } from "@/providers/contentProvider";
-import { PageData } from "@repo/payload-common/types";
+import { Page } from "@repo/payload-common/types";
+import { JSX } from "react";
+import "../css/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,7 @@ export default async function RootLayout({
   const navLinks = nav.header?.navigationLinks?.map((link) => {
     return {
       label: link.label,
-      url: (link.target as PageData)?.breadcrumbs?.at(-1)?.url || "/",
+      url: (link.target as Page)?.breadcrumbs?.at(-1)?.url || "/",
     };
   });
 

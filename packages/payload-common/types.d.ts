@@ -218,10 +218,9 @@ export interface NavigationData {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardBlock".
+ * via the `definition` "CardGroupBlock".
  */
-export interface CardBlock {
-  displayStyle?: ('flex' | 'scrollView') | null;
+export interface CardGroupBlock {
   cards?:
     | {
         title: string;

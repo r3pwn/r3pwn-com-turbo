@@ -28,12 +28,7 @@ export function RichTextNode({ content }: ContainerNodeProps) {
     case "block":
       switch (content.fields?.blockType) {
         case "card-group":
-          return (
-            <CardGroupNode
-              displayStyle={content.fields.displayStyle}
-              cards={content.fields.cards}
-            />
-          );
+          return <CardGroupNode cards={content.fields.cards} />;
       }
       return <Typography>DEBUG: {JSON.stringify(content)}</Typography>;
     case "heading":

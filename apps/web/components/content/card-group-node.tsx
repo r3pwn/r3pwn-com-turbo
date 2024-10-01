@@ -1,4 +1,4 @@
-import { type CardBlock, type Media } from "@repo/payload-common/types";
+import { type CardGroupBlock, type Media } from "@repo/payload-common/types";
 import {
   Card,
   CardDescription,
@@ -11,8 +11,7 @@ import Link from "next/link";
 import { ArrowForwardIos } from "@mui/icons-material";
 
 type CardNodeProps = {
-  displayStyle: CardBlock["displayStyle"];
-  cards: CardBlock["cards"];
+  cards: CardGroupBlock["cards"];
 };
 
 type CardLinkProps = {

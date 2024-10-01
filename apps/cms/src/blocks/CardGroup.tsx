@@ -2,22 +2,8 @@ import type { Block } from 'payload'
 
 export const Card: Block = {
   slug: 'card-group',
-  interfaceName: 'CardBlock',
+  interfaceName: 'CardGroupBlock',
   fields: [
-    {
-      name: 'displayStyle',
-      type: 'select',
-      options: [
-        {
-          label: 'Flex',
-          value: 'flex',
-        },
-        {
-          label: 'Carousel (scrollable)',
-          value: 'scrollView',
-        },
-      ],
-    },
     {
       name: 'cards',
       type: 'array',

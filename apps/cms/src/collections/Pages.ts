@@ -56,6 +56,11 @@ export const Pages: CollectionConfig = {
     },
   ],
   hooks: {
+    afterDelete: [
+      async ({ doc }) => {
+        await revalidatePages([doc.url])
+      },
+    ],
     afterChange: [
       async ({ doc, previousDoc, operation }) => {
         if (operation !== 'update') {

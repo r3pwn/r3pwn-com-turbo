@@ -15,7 +15,9 @@ export const UrlSlugField = () => {
           if (!data || !['create', 'update'].includes(operation || '')) {
             return
           }
-          data.url = data.breadcrumbs?.at(-1)?.url || '/404'
+          const url = data.breadcrumbs?.at(-1)?.url || '/404'
+
+          data.url = url === '/index' ? '/' : url
         },
       ],
     },

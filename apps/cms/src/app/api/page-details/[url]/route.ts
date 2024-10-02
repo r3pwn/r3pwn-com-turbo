@@ -186,7 +186,6 @@ const populateImageCarousel = async (node: ContentNode) => {
 }
 
 export const GET = async (_: Request, { params }: { params: { url: string } }) => {
-  console.log(params.url)
   const docs = (await payload.find({
     collection: 'pages',
     depth: 0,

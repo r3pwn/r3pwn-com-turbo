@@ -1,3 +1,4 @@
+import { revalidateTags } from '@/utils/revalidate-helper'
 import { getSupportedIcons } from '@repo/payload-common/icons'
 import type { GlobalConfig } from 'payload'
 
@@ -87,4 +88,11 @@ export const Navigation: GlobalConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateTags(['navigation'])
+      },
+    ],
+  },
 }

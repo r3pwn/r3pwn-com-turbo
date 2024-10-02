@@ -1,4 +1,5 @@
 import { UrlSlugField } from '@/fields/url-slug'
+import { revalidatePages } from '@/utils/revalidate-helper'
 import { slugify } from '@/utils/string-helpers'
 import { createBreadcrumbsField } from '@payloadcms/plugin-nested-docs'
 import type { CollectionConfig } from 'payload'
@@ -54,4 +55,21 @@ export const Pages: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc, previousDoc, operation }) => {
+        if (operation !== 'update') {
+          return
+        }
+
+        const urls = [] as string[]
+        if (previousDoc?.url && previousDoc.url !== doc.url) {
+          urls.push(previousDoc.url)
+        }
+        urls.push(doc.url)
+
+        await revalidatePages(urls)
+      },
+    ],
+  },
 }

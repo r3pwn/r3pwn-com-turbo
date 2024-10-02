@@ -10,6 +10,7 @@
       "env": [
         "DATABASE_URI",
         "PAYLOAD_SECRET",
+        "REVALIDATE_SECRET",
         "GCS_CREDENTIALS",
         "GCS_BUCKET",
         "PUBLIC_MEDIA_PREFIX",
@@ -19,7 +20,7 @@
     },
     "web#build": {
       "dependsOn": ["^build"],
-      "env": ["CMS_HOST", "SITE_HOST"],
+      "env": ["REVALIDATE_SECRET", "CMS_HOST", "SITE_HOST"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {

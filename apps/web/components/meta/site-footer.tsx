@@ -12,7 +12,7 @@ type Props = React.ComponentProps<"footer"> & {
 export function SiteFooter({ socialLinks, copyrightText, ...props }: Props) {
   return (
     <footer
-      className="border-t-2 flex flex-col items-center mt-auto bg-muted"
+      className="border-t-2 flex flex-col items-center mt-auto bg-card"
       {...props}
     >
       <div className="flex my-1 gap-1">
@@ -45,7 +45,7 @@ function SocialLink({ ariaLabel, url, icon, openInNewTab }: SocialLinkProps) {
     <Button variant="secondary" size="icon" asChild>
       <Link
         aria-label={ariaLabel}
-        href="/"
+        href={url}
         target={openInNewTab ? "_blank" : undefined}
       >
         <Icon color="inherit" />

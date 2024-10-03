@@ -20,7 +20,7 @@ type Props = React.ComponentProps<"header"> & {
 
 export function SiteHeader({ links, ...props }: Props) {
   return (
-    <header className="border-b-2 flex bg-muted" {...props}>
+    <header className="border-b-2 flex bg-card" {...props}>
       <Drawer>
         <DrawerTrigger asChild className="hidden max-md:flex">
           <Button

@@ -9,14 +9,6 @@ import "../css/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "r3pwn",
-  description: "Description",
-  openGraph: {
-    title: "r3pwn",
-  },
-};
-
 export default async function RootLayout({
   children,
 }: {

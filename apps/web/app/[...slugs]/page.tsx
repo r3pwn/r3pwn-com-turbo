@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPageByUrl, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
 import { PageContent } from "@/components/meta/page-content";
+import { Metadata } from "next";
 
 type Params = {
   slugs: string[];
@@ -10,6 +11,21 @@ type Params = {
 type Props = {
   params: Params;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slugs } = params;
+  const page = await getPageByUrl(`/${slugs.join("/")}`);
+
+  const title = page.meta?.title || page.title;
+
+  return {
+    title: `${title} | r3pwn`,
+    description: page.meta?.description || page.subtitle || undefined,
+    openGraph: {
+      images: (page.meta?.image as string) || undefined,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const pages = await getPageList();

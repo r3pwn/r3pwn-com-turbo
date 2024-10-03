@@ -13,3 +13,12 @@
 .rich-text-root > *:is(h2, h3, h4, h5, h6) {
   padding-top: 1rem;
 }
+
+.rich-text-root li > *:is(ul, ol) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.rich-text-root li:has(ul, ol) {
+  list-style: none;
+}

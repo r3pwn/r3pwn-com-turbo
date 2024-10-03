@@ -6,11 +6,13 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
-import { LinkTarget } from "@/lib/types";
 import { ArrowBackIos } from "@mui/icons-material";
 
 type SmartBreadcrumbProps = React.ComponentProps<"nav"> & {
-  breadcrumbs: LinkTarget[];
+  breadcrumbs: {
+    label: string;
+    url: string;
+  }[];
 };
 
 export function SmartBreadcrumbs({

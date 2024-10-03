@@ -36,7 +36,7 @@ export default async function Page({ params }: Props) {
   ];
 
   return (
-    <div className="page-container">
+    <div className="page-container mb-4">
       {showHeader ? (
         <PageHeader
           title={page.title}

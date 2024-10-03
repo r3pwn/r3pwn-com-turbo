@@ -59,9 +59,7 @@ const GET_NAVIGATION = gql`
         navigationLinks {
           label
           target {
-            breadcrumbs {
-              url
-            }
+            url
           }
         }
       }

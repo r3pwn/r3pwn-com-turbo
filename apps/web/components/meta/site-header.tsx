@@ -1,4 +1,3 @@
-import { LinkTarget } from "@/lib/types";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import {
@@ -12,13 +11,16 @@ import {
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ArrowForwardIos } from "@mui/icons-material";
 
-type SiteHeaderProps = React.ComponentProps<"header"> & {
-  links?: LinkTarget[];
+type Props = React.ComponentProps<"header"> & {
+  links?: {
+    label: string;
+    url: string;
+  }[];
 };
 
-export function SiteHeader({ links, ...props }: SiteHeaderProps) {
+export function SiteHeader({ links, ...props }: Props) {
   return (
-    <header className="border-b-2 flex" {...props}>
+    <header className="border-b-2 flex bg-muted" {...props}>
       <Drawer>
         <DrawerTrigger asChild className="hidden max-md:flex">
           <Button

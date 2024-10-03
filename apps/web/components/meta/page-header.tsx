@@ -1,11 +1,13 @@
-import { LinkTarget } from "@/lib/types";
 import { Typography } from "../ui/typography";
 import { SmartBreadcrumbs } from "./smart-breadcrumbs";
 
 type PageHeaderProps = React.ComponentProps<"div"> & {
   title: string;
   subtitle?: string;
-  breadcrumbs?: LinkTarget[];
+  breadcrumbs?: {
+    label: string;
+    url: string;
+  }[];
 };
 
 export function PageHeader({

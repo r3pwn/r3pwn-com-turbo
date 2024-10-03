@@ -15,7 +15,7 @@ export function SiteFooter({ socialLinks, copyrightText, ...props }: Props) {
       className="border-t-2 flex flex-col items-center mt-auto bg-card"
       {...props}
     >
-      <div className="flex my-1 gap-1">
+      <div className="flex my-1 gap-1 flex-wrap">
         {socialLinks?.map((link, index) => (
           <SocialLink
             key={index}

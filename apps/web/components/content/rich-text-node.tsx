@@ -5,6 +5,7 @@ import { type Media, type Page } from "@repo/payload-common/types";
 import { ImageNode } from "./image-node";
 import { CardGroupNode } from "./card-group-node";
 import { ImageCarouselNode } from "./image-carousel-node";
+import { DiscussionNode } from "./discussion-node";
 
 type RichTextContent = Page["content"];
 
@@ -36,6 +37,13 @@ export function RichTextNode({ content }: ContainerNodeProps) {
               images={content.fields?.images?.map(
                 (imageObj: { image: Media }) => imageObj.image
               )}
+            />
+          );
+        case "disqus-comments":
+          return (
+            <DiscussionNode
+              url={content.fields.url || ""}
+              identifier={content.fields.identifier || ""}
             />
           );
       }

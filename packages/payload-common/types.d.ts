@@ -253,6 +253,17 @@ export interface ImageCarouselBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DisqusCommentsBlock".
+ */
+export interface DisqusCommentsBlock {
+  url: string;
+  identifier: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'disqus-comments';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

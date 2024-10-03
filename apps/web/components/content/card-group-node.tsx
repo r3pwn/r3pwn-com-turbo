@@ -37,7 +37,7 @@ function CardLink({ title, description, link, image }: CardLinkProps) {
           <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardFooter className="flex justify-end">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" component="div">
             <ArrowForwardIos />
           </Button>
         </CardFooter>

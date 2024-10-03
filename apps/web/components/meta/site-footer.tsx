@@ -19,6 +19,7 @@ export function SiteFooter({ socialLinks, copyrightText, ...props }: Props) {
         {socialLinks?.map((link, index) => (
           <SocialLink
             key={index}
+            ariaLabel={link.ariaLabel || undefined}
             url={link.url || "/"}
             icon={link.icon || ""}
             openInNewTab={link.openInNewTab || false}

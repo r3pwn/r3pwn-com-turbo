@@ -13,7 +13,7 @@ type Props = {
 
 export function ImageCarouselNode({ images }: Props) {
   return (
-    <Carousel className="flex place-content-center py-4 lg:w-[80%] lg:mx-auto">
+    <Carousel className="flex place-content-center py-4 lg:w-[80%] lg:mx-auto max-h-[60vh]">
       <CarouselPrevious
         className="self-center"
         aria-label="Show previous image"
@@ -29,6 +29,7 @@ export function ImageCarouselNode({ images }: Props) {
               width={image.width || 1}
               src={image.url || ""}
               alt={image.alt}
+              className="max-h-[60vh] object-contain"
             ></img>
           </CarouselItem>
         ))}

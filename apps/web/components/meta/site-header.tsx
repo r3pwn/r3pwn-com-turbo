@@ -59,7 +59,7 @@ export function SiteHeader({ links, ...props }: Props) {
       <Button
         variant="ghost"
         size="icon"
-        className="p-1 m-2 w-12 h-12 max-md:ml-0"
+        className="p-1 m-2 w-12 h-12 max-md:ml-0 max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2"
         asChild
       >
         <Link href="/" aria-label="Home page">

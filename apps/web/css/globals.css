@@ -71,18 +71,33 @@
 body {
   background-color: hsl(var(--background)) !important;
   color: hsl(var(--foreground)) !important;
+  --page-width: 100%;
+
+  @media screen(md) {
+    --page-width: 90%;
+  }
+
+  @media screen(lg) {
+    --page-width: 80%;
+  }
 }
 
 .page-container {
   margin-top: 0.5rem;
-  margin-left: var(--page-margin);
-  margin-right: var(--page-margin);
+  padding-left: var(--page-margin);
+  padding-right: var(--page-margin);
+  width: var(--page-width);
 
-  @media screen(lg) {
-    width: 90%;
+  @media screen(md) {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+header {
+  width: 100%;
+  padding-left: calc((100% - var(--page-width)) / 2);
+  padding-right: calc((100% - var(--page-width)) / 2);
 }
 
 @layer base {

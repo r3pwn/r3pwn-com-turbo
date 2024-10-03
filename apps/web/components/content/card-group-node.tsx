@@ -48,7 +48,7 @@ function CardLink({ title, description, link, image }: CardLinkProps) {
 
 export function CardGroupNode({ cards }: CardNodeProps) {
   return (
-    <div className="cards-block flex flex-wrap gap-4">
+    <div className="cards-block flex flex-wrap flex-row gap-4 max-sm:flex-col max-sm:flex-nowrap max-sm:w-fit max-sm:mx-auto">
       {cards?.map((card, index) => (
         <CardLink
           key={index}

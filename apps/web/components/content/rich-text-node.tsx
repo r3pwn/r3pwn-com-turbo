@@ -129,7 +129,7 @@ function QuoteNode({ content }: ContainerNodeProps) {
   }
 
   return (
-    <Typography display={display} as={display === "quote" ? "span" : "div"}>
+    <Typography display={display} as="div">
       {content.children.map((textNode, index) => (
         <RichTextNode content={textNode as any} key={index} />
       ))}

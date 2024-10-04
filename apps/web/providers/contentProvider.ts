@@ -7,13 +7,8 @@ const { CMS_HOST } = process.env;
 
 type AbridgedPageData = {
   title: string;
-  subtitle?: string;
-  breadcrumbs: Breadcrumb[];
-};
-
-type Breadcrumb = {
-  label: string;
   url: string;
+  updatedAt: string;
 };
 
 const GET_PAGE_LIST = gql`
@@ -21,11 +16,8 @@ const GET_PAGE_LIST = gql`
     Pages {
       docs {
         title
-        subtitle
-        breadcrumbs {
-          url
-          label
-        }
+        url
+        updatedAt
       }
     }
   }
@@ -36,10 +28,7 @@ export const getPageList = unstable_cache(
     const { data } = await getClient().query({
       query: GET_PAGE_LIST,
     });
-    return (data.Pages.docs as AbridgedPageData[]).map((page) => ({
-      ...page,
-      url: page.breadcrumbs.at(-1)?.url || "/404",
-    }));
+    return data.Pages.docs as AbridgedPageData[];
   },
   ["pages"],
   { revalidate: 3600, tags: ["pages"] }

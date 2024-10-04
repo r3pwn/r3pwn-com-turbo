@@ -46,10 +46,14 @@ export const getPageList = unstable_cache(
 );
 
 export const getPageByUrl = async (url: string) => {
-  const res = await fetch(
-    `${CMS_HOST}/api/page-details/${encodeURIComponent(url)}`
-  );
-  return (await res.json()) as Page;
+  try {
+    const res = await fetch(
+      `${CMS_HOST}/api/page-details/${encodeURIComponent(url)}`
+    );
+    return (await res.json()) as Page;
+  } catch {
+    return null;
+  }
 };
 
 const GET_NAVIGATION = gql`

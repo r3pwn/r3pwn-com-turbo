@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getPageByUrl, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
 import { PageContent } from "@/components/meta/page-content";
@@ -14,7 +14,12 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slugs } = params;
+
   const page = await getPageByUrl(`/${slugs.join("/")}`);
+
+  if (!page) {
+    return {};
+  }
 
   const title = page.meta?.title || page.title;
 
@@ -36,9 +41,16 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: Props) {
   const { slugs } = params;
+
+  if (slugs.some((slug) => slug.includes("_"))) {
+    return permanentRedirect(
+      `/${slugs.map((slug) => slug.replaceAll("_", "-")).join("/")}`
+    );
+  }
+
   const page = await getPageByUrl(`/${slugs.join("/")}`);
 
-  if (!page) {
+  if (!page || (page as any).error) {
     return notFound();
   }
 

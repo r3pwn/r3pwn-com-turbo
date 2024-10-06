@@ -1,6 +1,6 @@
 import configPromise from '@payload-config'
 import { LinkFields } from '@payloadcms/richtext-lexical'
-import { Page } from '@repo/payload-common/types'
+import { Media, Page } from '@repo/payload-common/types'
 import { getPayload, PaginatedDocs } from 'payload'
 
 type ContentNode = {
@@ -56,7 +56,7 @@ const populateMedia = async (node: ContentNode) => {
     context: {
       select: ['alt', 'url'],
     },
-  })) as Page
+  })) as Media
 
   node.value = linkedMedia
 }
@@ -185,6 +185,22 @@ const populateImageCarousel = async (node: ContentNode) => {
   }
 }
 
+const populateMetaImage = async (page: Page) => {
+  if (!page.meta?.image) {
+    return
+  }
+
+  const linkedMedia = (await payload.findByID({
+    collection: 'media',
+    id: page.meta.image as string,
+    context: {
+      select: ['url'],
+    },
+  })) as Media
+
+  page.meta.image = linkedMedia.url
+}
+
 export const GET = async (_: Request, { params }: { params: { url: string } }) => {
   const docs = (await payload.find({
     collection: 'pages',
@@ -215,6 +231,8 @@ export const GET = async (_: Request, { params }: { params: { url: string } }) =
       await walkContentNodes(node as ContentNode)
     }
   }
+
+  await populateMetaImage(data)
 
   return Response.json(data)
 }

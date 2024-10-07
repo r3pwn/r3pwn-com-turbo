@@ -12,3 +12,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return first.url < second.url ? -1 : first.url > second.url ? 1 : 0;
     });
 }
+
+export const dynamic = "force-dynamic";

@@ -6,6 +6,7 @@ import { ImageNode } from "./image-node";
 import { CardGroupNode } from "./card-group-node";
 import { ImageCarouselNode } from "./image-carousel-node";
 import { DiscussionNode } from "./discussion-node";
+import Link from "next/link";
 
 type RichTextContent = Page["content"];
 
@@ -104,16 +105,15 @@ function ContainerNode({ content, ...extras }: ContainerNodeProps) {
 
 function LinkNode({ content }: ContainerNodeProps) {
   return (
-    <Typography
-      as="a"
-      className={TextFormatClasses.LINK}
+    <Link
       href={(content as any).fields?.url}
       target={(content as any).fields?.newTab ? "_blank" : undefined}
+      className={TextFormatClasses.LINK}
     >
       {content.children.map((textNode, index) => (
         <RichTextNode content={textNode as any} key={index} />
       ))}
-    </Typography>
+    </Link>
   );
 }
 

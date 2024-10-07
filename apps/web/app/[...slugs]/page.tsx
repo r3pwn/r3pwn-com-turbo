@@ -75,7 +75,7 @@ export default async function Page({ params }: Props) {
       ) : (
         <></>
       )}
-      <PageContent content={page.content} />
+      <PageContent content={page.content} className="rich-text-root" />
     </div>
   );
 }

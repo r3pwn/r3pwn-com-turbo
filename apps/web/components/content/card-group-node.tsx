@@ -23,8 +23,8 @@ type CardLinkProps = {
 
 function CardLink({ title, description, link, image }: CardLinkProps) {
   return (
-    <Link href={link as string}>
-      <Card className="min-w-[150px] max-w-[350px] transition-colors hover:bg-muted">
+    <Link href={link as string} className="flex">
+      <Card className="flex flex-col min-w-[150px] max-w-[350px] transition-colors hover:bg-muted">
         <img
           className="rounded-t-xl"
           src={(image as Media).url || ""}
@@ -32,7 +32,7 @@ function CardLink({ title, description, link, image }: CardLinkProps) {
           width={350}
           height={175}
         />
-        <CardHeader>
+        <CardHeader className="mb-auto">
           <CardTitle>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>

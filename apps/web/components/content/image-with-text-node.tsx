@@ -8,12 +8,12 @@ type Props = {
 
 export function ImageWithTextNode({ image, text }: Props) {
   return (
-    <div className="flex flex-wrap gap-4 max-sm:flex-col max-sm:flex-nowrap max-sm:w-fit">
+    <div className="flex flex-wrap gap-4 mb-10 max-sm:flex-col max-sm:flex-nowrap max-sm:w-fit">
       <img
         src={image}
         className="w-[300px] h-auto aspect-square rounded-full max-sm:mx-auto"
       ></img>
-      <PageContent content={text as any} className="basis-[300px] grow" />
+      <PageContent content={text as any} className="sm:basis-[300px] grow" />
     </div>
   );
 }

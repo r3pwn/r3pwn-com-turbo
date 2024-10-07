@@ -68,6 +68,7 @@ const populateBlocks = async (node: ContentNode) => {
 
   await populateCardGroup(node)
   await populateImageCarousel(node)
+  await populateImageWithText(node)
 }
 
 const populateCardGroup = async (node: ContentNode) => {
@@ -183,6 +184,22 @@ const populateImageCarousel = async (node: ContentNode) => {
       imageObj.image = images[imageObj.image as number]
     }
   }
+}
+
+const populateImageWithText = async (node: ContentNode) => {
+  if (node.fields?.blockType !== 'image-with-text') {
+    return
+  }
+
+  const linkedMedia = (await payload.findByID({
+    collection: 'media',
+    id: node.fields.image as string,
+    context: {
+      select: ['url'],
+    },
+  })) as Media
+
+  node.fields.image = linkedMedia.url
 }
 
 const populateMetaImage = async (page: Page) => {

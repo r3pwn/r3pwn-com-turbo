@@ -7,6 +7,7 @@ import { CardGroupNode } from "./card-group-node";
 import { ImageCarouselNode } from "./image-carousel-node";
 import { DiscussionNode } from "./discussion-node";
 import Link from "next/link";
+import { ImageWithTextNode } from "./image-with-text-node";
 
 type RichTextContent = Page["content"];
 
@@ -45,6 +46,13 @@ export function RichTextNode({ content }: ContainerNodeProps) {
             <DiscussionNode
               url={content.fields.url || ""}
               identifier={content.fields.identifier || ""}
+            />
+          );
+        case "image-with-text":
+          return (
+            <ImageWithTextNode
+              image={content.fields.image}
+              text={content.fields.text}
             />
           );
       }

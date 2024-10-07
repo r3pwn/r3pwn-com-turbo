@@ -1,52 +1,11 @@
 import { type CardGroupBlock, type Media } from "@repo/payload-common/types";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { ArrowForwardIos } from "@mui/icons-material";
+import { CardLink } from "./card-link";
 
-type CardNodeProps = {
+type Props = {
   cards: CardGroupBlock["cards"];
 };
 
-type CardLinkProps = {
-  title: string;
-  description?: string;
-  image?: Media;
-  link?: string;
-};
-
-function CardLink({ title, description, link, image }: CardLinkProps) {
-  return (
-    <Link href={link as string} className="flex">
-      <Card className="flex flex-col min-w-[150px] max-w-[350px] transition-colors hover:bg-muted">
-        <img
-          className="rounded-t-xl"
-          src={(image as Media).url || ""}
-          alt={(image as Media).alt || ""}
-          width={350}
-          height={175}
-        />
-        <CardHeader className="mb-auto">
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{description}</CardDescription>
-        </CardHeader>
-        <CardFooter className="flex justify-end">
-          <Button variant="ghost" size="icon" component="div">
-            <ArrowForwardIos />
-          </Button>
-        </CardFooter>
-      </Card>
-    </Link>
-  );
-}
-
-export function CardGroupNode({ cards }: CardNodeProps) {
+export function CardGroupNode({ cards }: Props) {
   return (
     <div className="cards-block flex flex-wrap flex-row gap-4 max-sm:flex-col max-sm:flex-nowrap max-sm:w-fit max-sm:mx-auto">
       {cards?.map((card, index) => (

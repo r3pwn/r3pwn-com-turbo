@@ -61,6 +61,7 @@ export function RichTextNode({ content }: ContainerNodeProps) {
     case "linebreak":
       return <br />;
     case "link":
+    case "autolink":
       return <LinkNode content={content} />;
     case "list":
       return (
@@ -122,6 +123,7 @@ function QuoteNode({ content }: ContainerNodeProps) {
     content.children.every(
       (textNode) =>
         textNode.type === "linebreak" ||
+        textNode.type === "autolink" ||
         (textNode.format as number) & TextFormats.CODE
     )
   ) {

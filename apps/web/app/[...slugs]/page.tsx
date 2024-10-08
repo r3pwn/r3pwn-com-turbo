@@ -10,11 +10,11 @@ type Params = {
 };
 
 type Props = {
-  params: Params;
+  params: Promise<Params>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slugs } = params;
+  const { slugs } = await params;
 
   const page = await getPageByUrl(`/${slugs.join("/")}`);
 
@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  const { slugs } = params;
+  const { slugs } = await params;
 
   const pageUrl = `/${slugs.join("/")}`;
   const validatedUrl = getValidatedUrl(pageUrl);

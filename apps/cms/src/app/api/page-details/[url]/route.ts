@@ -218,14 +218,15 @@ const populateMetaImage = async (page: Page) => {
   page.meta.image = linkedMedia.url
 }
 
-export const GET = async (_: Request, { params }: { params: { url: string } }) => {
+export const GET = async (_: Request, { params }: { params: Promise<{ url: string }> }) => {
+  const { url } = await params
   const docs = (await payload.find({
     collection: 'pages',
     depth: 0,
     limit: 1,
     where: {
       url: {
-        equals: params.url,
+        equals: url,
       },
     },
   })) as PaginatedDocs<Page>

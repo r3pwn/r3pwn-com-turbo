@@ -3,6 +3,7 @@ import { getPageByUrl, getPageList } from "../../providers/contentProvider";
 import { PageHeader } from "@/components/meta/page-header";
 import { PageContent } from "@/components/meta/page-content";
 import { Metadata } from "next";
+import { getValidatedUrl } from "@/lib/page-redirect";
 
 type Params = {
   slugs: string[];
@@ -42,13 +43,14 @@ export async function generateStaticParams() {
 export default async function Page({ params }: Props) {
   const { slugs } = params;
 
-  if (slugs.some((slug) => slug.includes("_"))) {
-    return permanentRedirect(
-      `/${slugs.map((slug) => slug.replaceAll("_", "-")).join("/")}`
-    );
+  const pageUrl = `/${slugs.join("/")}`;
+  const validatedUrl = getValidatedUrl(pageUrl);
+
+  if (pageUrl !== validatedUrl) {
+    return permanentRedirect(validatedUrl);
   }
 
-  const page = await getPageByUrl(`/${slugs.join("/")}`);
+  const page = await getPageByUrl(pageUrl);
 
   if (!page || (page as any).error) {
     return notFound();

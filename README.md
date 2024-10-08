@@ -1,25 +1,17 @@
-# Turborepo starter
+# r3pwn-com-turbo
 
-This is an official starter Turborepo.
-
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
+This is a turborepo monorepo which contains the code for my personal website and the content management system that backs it.
 
 ## What's inside?
 
-This Turborepo includes the following packages/apps:
+This repo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `cms`: a [PayloadCMS](https://payloadcms.com/) instance
+- `web`: a [Next.js](https://nextjs.org/) app
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/payload-common`: a library holding auto-generated Payload types and supported icons for social links
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
@@ -32,15 +24,6 @@ This Turborepo has some additional tools already setup for you:
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
 ### Develop
 
 To develop all apps and packages, run the following command:
@@ -48,6 +31,15 @@ To develop all apps and packages, run the following command:
 ```
 cd my-turborepo
 pnpm dev
+```
+
+### Build
+
+To build all apps and packages, run the following command:
+
+```
+cd my-turborepo
+pnpm build
 ```
 
 ### Remote Caching

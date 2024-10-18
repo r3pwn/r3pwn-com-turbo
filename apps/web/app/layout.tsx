@@ -6,6 +6,7 @@ import { Page } from "@repo/payload-common/types";
 import { JSX } from "react";
 import { SiteFooter } from "@/components/meta/site-footer";
 import "../css/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default async function RootLayout({
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <SiteHeader links={navLinks || []} />
         {children}
+        <SpeedInsights />
         <SiteFooter
           socialLinks={nav.footer?.socialLinks || []}
           copyrightText={nav.footer?.copyrightText || ""}

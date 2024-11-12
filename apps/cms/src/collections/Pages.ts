@@ -14,6 +14,9 @@ export const Pages: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'subtitle'],
   },
+  defaultPopulate: {
+    url: true,
+  },
   fields: [
     {
       name: 'title',

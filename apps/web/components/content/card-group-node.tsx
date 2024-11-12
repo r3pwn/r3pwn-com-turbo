@@ -1,4 +1,8 @@
-import { type CardGroupBlock, type Media } from "@repo/payload-common/types";
+import {
+  type Page,
+  type CardGroupBlock,
+  type Media,
+} from "@repo/payload-common/types";
 import { CardLink } from "./card-link";
 
 type Props = {
@@ -14,7 +18,7 @@ export function CardGroupNode({ cards }: Props) {
           title={card.title}
           description={card.description || undefined}
           image={card.image as Media | undefined}
-          link={card.link as string | undefined}
+          link={card.link as Page | undefined}
         />
       ))}
     </div>

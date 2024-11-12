@@ -16,7 +16,6 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Navigation } from './globals/Navigation'
 
-import { fieldsSelect } from '@payload-enchants/fields-select'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { gcsStorage } from '@payloadcms/storage-gcs'
@@ -61,7 +60,6 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    fieldsSelect({ selectIDByDefault: true }),
     seoPlugin({
       collections: ['pages'],
       uploadsCollection: 'media',

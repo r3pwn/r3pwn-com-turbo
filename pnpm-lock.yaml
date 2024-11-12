@@ -36,9 +36,6 @@ importers:
       '@dotenvx/dotenvx':
         specifier: ^1.22.1
         version: 1.22.1
-      '@payload-enchants/fields-select':
-        specifier: ^1.2.2
-        version: 1.2.2(payload@3.0.0-beta.127(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)(typescript@5.6.2))
       '@payloadcms/db-mongodb':
         specifier: beta
         version: 3.0.0-beta.127(@aws-sdk/client-sso-oidc@3.687.0(@aws-sdk/client-sts@3.687.0(aws-crt@1.21.3))(aws-crt@1.21.3))(aws-crt@1.21.3)(payload@3.0.0-beta.127(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)(typescript@5.6.2))
@@ -1447,11 +1444,6 @@ packages:
 
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
-
-  '@payload-enchants/fields-select@1.2.2':
-    resolution: {integrity: sha512-D4wejwqNIYrUedu9HXnhVKhDNYtFMhfGNZcSUe25r8rkbHwsKkbL0ahx+/911IdFf8BgKvHXfiqn0DPMMf8QUg==}
-    peerDependencies:
-      payload: ^3.0.0-beta.61
 
   '@payloadcms/db-mongodb@3.0.0-beta.127':
     resolution: {integrity: sha512-0iXocZUPVc919gkMSr9jfbYnUEVMaXn3T30KK1uNZ28q1Eo+VmPml6c7O1LjmzkBpMCgF7CfJXPDqBq+geKyQA==}
@@ -7680,10 +7672,6 @@ snapshots:
   '@nolyfill/is-core-module@1.0.39': {}
 
   '@one-ini/wasm@0.1.1': {}
-
-  '@payload-enchants/fields-select@1.2.2(payload@3.0.0-beta.127(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)(typescript@5.6.2))':
-    dependencies:
-      payload: 3.0.0-beta.127(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)(typescript@5.6.2)
 
   '@payloadcms/db-mongodb@3.0.0-beta.127(@aws-sdk/client-sso-oidc@3.687.0(@aws-sdk/client-sts@3.687.0(aws-crt@1.21.3))(aws-crt@1.21.3))(aws-crt@1.21.3)(payload@3.0.0-beta.127(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)(typescript@5.6.2))':
     dependencies:

@@ -1,4 +1,4 @@
-import { type Media } from "@repo/payload-common/types";
+import { type Page, type Media } from "@repo/payload-common/types";
 import Link from "next/link";
 import {
   Card,
@@ -14,17 +14,17 @@ type Props = {
   title: string;
   description?: string;
   image?: Media;
-  link?: string;
+  link?: Page;
 };
 
 export function CardLink({ title, description, link, image }: Props) {
   return (
-    <Link href={link as string} className="flex">
+    <Link href={link?.url || ""} className="flex">
       <Card className="flex flex-col min-w-[150px] max-w-[350px] transition-colors hover:bg-muted">
         <img
           className="rounded-t-xl"
-          src={(image as Media).url || ""}
-          alt={(image as Media).alt || ""}
+          src={image?.url || ""}
+          alt={image?.alt || ""}
           width={350}
           height={175}
         />

@@ -15,7 +15,7 @@ export type DisplayVariant =
   | "code-block"
   | "list";
 
-type TypographyProps<T extends ElementType> = {
+export type TypographyProps<T extends ElementType> = {
   as?: T;
   display?: DisplayVariant;
 } & ComponentPropsWithoutRef<T>;

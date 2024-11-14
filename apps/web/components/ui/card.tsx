@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { Typography, TypographyProps } from "./typography";
+import { ElementType } from "react";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -29,29 +31,36 @@ const CardHeader = React.forwardRef<
 ));
 CardHeader.displayName = "CardHeader";
 
-const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h2
-    ref={ref}
-    className={cn("font-semibold leading-none tracking-tight", className)}
-    {...props}
-  />
-));
-CardTitle.displayName = "CardTitle";
+export function CardTitle<C extends ElementType>({
+  children,
+  as,
+  className,
+  ...props
+}: TypographyProps<C>) {
+  return (
+    <Typography as={as || "h2"} display="body-lg" {...props}>
+      {children}
+    </Typography>
+  );
+}
 
-const CardDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
-));
-CardDescription.displayName = "CardDescription";
+export function CardDescription<C extends ElementType>({
+  children,
+  as,
+  className,
+  ...props
+}: TypographyProps<C>) {
+  return (
+    <Typography
+      as={as || "p"}
+      display="body-sm"
+      className={cn("text-muted-foreground !mt-0", className)}
+      {...props}
+    >
+      {children}
+    </Typography>
+  );
+}
 
 const CardContent = React.forwardRef<
   HTMLDivElement,
@@ -73,11 +82,4 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-};
+export { Card, CardHeader, CardFooter, CardContent };

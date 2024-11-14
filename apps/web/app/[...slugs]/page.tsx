@@ -16,7 +16,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slugs } = await params;
 
-  const page = await getPageByUrl(`/${slugs.join("/")}`);
+  const url = `/${slugs.join("/")}`;
+  const page = await getPageByUrl(url);
 
   if (!page) {
     return {};
@@ -28,6 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${title} | r3pwn`,
     description: page.meta?.description || page.subtitle || undefined,
     openGraph: {
+      siteName: "r3pwn",
+      url: `${process.env.SITE_HOST}${url}`,
       images: (page.meta?.image as string) || undefined,
     },
   };

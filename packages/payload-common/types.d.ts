@@ -99,6 +99,9 @@ export interface Page {
   meta?: {
     title?: string | null;
     description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (string | null) | Media;
   };
   parent?: (string | null) | Page;
@@ -223,11 +226,9 @@ export interface PagesSelect<T extends boolean = true> {
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         description?: T;
         image?: T;
-        preview?: T;
       };
   parent?: T;
   updatedAt?: T;
@@ -304,65 +305,79 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface NavigationData {
   id: string;
-  header?: {
-    navigationLinks?:
-      | {
-          label: string;
-          target: string | Page;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  footer?: {
-    socialLinks?:
-      | {
-          ariaLabel?: string | null;
-          url?: string | null;
-          icon?:
-            | ('email' | 'facebook' | 'github' | 'instagram' | 'linkedin' | 'reddit' | 'telegram' | 'twitter')
-            | null;
-          openInNewTab?: boolean | null;
-          id?: string | null;
-        }[]
-      | null;
-    copyrightText?: string | null;
-  };
+  header?: Header;
+  footer?: Footer;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Header".
+ */
+export interface Header {
+  navigationLinks?:
+    | {
+        label: string;
+        target: string | Page;
+        id?: string | null;
+      }[]
+    | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer".
+ */
+export interface Footer {
+  socialLinks?:
+    | {
+        ariaLabel?: string | null;
+        url?: string | null;
+        icon?: ('email' | 'facebook' | 'github' | 'instagram' | 'linkedin' | 'reddit' | 'telegram' | 'twitter') | null;
+        openInNewTab?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyrightText?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation_select".
  */
 export interface NavigationSelect<T extends boolean = true> {
-  header?:
-    | T
-    | {
-        navigationLinks?:
-          | T
-          | {
-              label?: T;
-              target?: T;
-              id?: T;
-            };
-      };
-  footer?:
-    | T
-    | {
-        socialLinks?:
-          | T
-          | {
-              ariaLabel?: T;
-              url?: T;
-              icon?: T;
-              openInNewTab?: T;
-              id?: T;
-            };
-        copyrightText?: T;
-      };
+  header?: T | HeaderSelect<T>;
+  footer?: T | FooterSelect<T>;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  navigationLinks?:
+    | T
+    | {
+        label?: T;
+        target?: T;
+        id?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  socialLinks?:
+    | T
+    | {
+        ariaLabel?: T;
+        url?: T;
+        icon?: T;
+        openInNewTab?: T;
+        id?: T;
+      };
+  copyrightText?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

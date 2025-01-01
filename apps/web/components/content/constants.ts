@@ -1,4 +1,4 @@
-import { type DisplayVariant } from "../ui/typography";
+import type { DisplayVariant } from "../ui/typography";
 
 export const TextFormats = {
   BOLD: 1,

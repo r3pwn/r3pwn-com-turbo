@@ -1,5 +1,5 @@
 import { ElementType } from "react";
-import { DisplayVariant, Typography } from "../ui/typography";
+import { type DisplayVariant, Typography } from "../ui/typography";
 import { HeadingVariants, TextFormatClasses, TextFormats } from "./constants";
 import { type Media, type Page } from "@repo/payload-common/types";
 import { ImageNode } from "./image-node";

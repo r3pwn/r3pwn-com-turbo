@@ -32,8 +32,6 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "15.0.3",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@types/eslint": "^8.56.12",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",

@@ -15,7 +15,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.22.1",
+    "@dotenvx/dotenvx": "^1.32.0",
     "@payloadcms/db-mongodb": "^3.12.0",
     "@payloadcms/next": "^3.12.0",
     "@payloadcms/plugin-nested-docs": "^3.12.0",
@@ -30,17 +30,17 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sharp": "0.33.5",
-    "lexical": "0.20.0",
-    "@lexical/headless": "0.20.0",
-    "@lexical/html": "0.20.0",
-    "@lexical/link": "0.20.0",
-    "@lexical/list": "0.20.0",
-    "@lexical/mark": "0.20.0",
-    "@lexical/react": "0.20.0",
-    "@lexical/rich-text": "0.20.0",
-    "@lexical/selection": "0.20.0",
-    "@lexical/table": "0.20.0",
-    "@lexical/utils": "0.20.0"
+    "lexical": "0.22.0",
+    "@lexical/headless": "0.22.0",
+    "@lexical/html": "0.22.0",
+    "@lexical/link": "0.22.0",
+    "@lexical/list": "0.22.0",
+    "@lexical/mark": "0.22.0",
+    "@lexical/react": "0.22.0",
+    "@lexical/rich-text": "0.22.0",
+    "@lexical/selection": "0.22.0",
+    "@lexical/table": "0.22.0",
+    "@lexical/utils": "0.22.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

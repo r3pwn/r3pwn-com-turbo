@@ -1,13 +1,15 @@
-import { ElementType } from "react";
-import { type DisplayVariant, Typography } from "../ui/typography";
-import { HeadingVariants, TextFormatClasses, TextFormats } from "./constants";
-import { type Media, type Page } from "@repo/payload-common/types";
-import { ImageNode } from "./image-node";
-import { CardGroupNode } from "./card-group-node";
-import { ImageCarouselNode } from "./image-carousel-node";
-import { DiscussionNode } from "./discussion-node";
+import type { Media, Page } from "@repo/payload-common/types";
+import type { ElementType } from "react";
+import { type DisplayVariant, Typography } from "../../ui/typography";
+import ImageNode from "./image-node";
 import Link from "next/link";
-import { ImageWithTextNode } from "./image-with-text-node";
+import { renderBlock } from "../render-block";
+import {
+  getTextClasses,
+  HeadingVariants,
+  TextFormatClasses,
+  TextFormats,
+} from "./common";
 
 type RichTextContent = Page["content"];
 
@@ -23,40 +25,14 @@ type ContainerNodeProps = {
   className?: string;
 };
 
-export function RichTextNode({ content }: ContainerNodeProps) {
+export default function RichTextNode({ content }: ContainerNodeProps) {
   const componentTag = (content as any).tag;
 
   switch (content.type) {
     case "upload":
       return <ImageNode content={(content as ContainerContent<Media>).value} />;
     case "block":
-      switch (content.fields?.blockType) {
-        case "card-group":
-          return <CardGroupNode cards={content.fields.cards} />;
-        case "image-carousel":
-          return (
-            <ImageCarouselNode
-              images={content.fields?.images?.map(
-                (imageObj: { image: Media }) => imageObj.image
-              )}
-            />
-          );
-        case "disqus-comments":
-          return (
-            <DiscussionNode
-              url={content.fields.url || ""}
-              identifier={content.fields.identifier || ""}
-            />
-          );
-        case "image-with-text":
-          return (
-            <ImageWithTextNode
-              image={content.fields.image}
-              text={content.fields.text}
-            />
-          );
-      }
-      return <Typography>DEBUG: {JSON.stringify(content)}</Typography>;
+      return renderBlock(content.fields?.blockType, content.fields);
     case "heading":
       return (
         <ContainerNode
@@ -145,27 +121,4 @@ function QuoteNode({ content }: ContainerNodeProps) {
       ))}
     </Typography>
   );
-}
-
-function getTextClasses(textFormat: number) {
-  if (!Number(textFormat)) {
-    return "";
-  }
-  let classes = [];
-  if (textFormat & TextFormats.CODE) {
-    classes.push(TextFormatClasses.CODE);
-  }
-  if (textFormat & TextFormats.UNDERLINED) {
-    classes.push(TextFormatClasses.UNDERLINED);
-  }
-  if (textFormat & TextFormats.STRIKETHROUGH) {
-    classes.push(TextFormatClasses.STRIKETHROUGH);
-  }
-  if (textFormat & TextFormats.ITALICS) {
-    classes.push(TextFormatClasses.ITALICS);
-  }
-  if (textFormat & TextFormats.BOLD) {
-    classes.push(TextFormatClasses.BOLD);
-  }
-  return classes.join(" ");
 }

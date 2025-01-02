@@ -1,15 +1,11 @@
-import {
-  type Page,
-  type CardGroupBlock,
-  type Media,
-} from "@repo/payload-common/types";
-import { CardLink } from "./card-link";
+import type { Page, CardGroupBlock, Media } from "@repo/payload-common/types";
+import CardLink from "./card-link";
 
 type Props = {
   cards: CardGroupBlock["cards"];
 };
 
-export function CardGroupNode({ cards }: Props) {
+export default function CardGroup({ cards }: Props) {
   return (
     <div className="cards-block flex flex-wrap flex-row gap-4 max-sm:flex-col max-sm:flex-nowrap max-sm:w-fit max-sm:mx-auto">
       {cards?.map((card, index) => (

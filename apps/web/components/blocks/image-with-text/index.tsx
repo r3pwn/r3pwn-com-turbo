@@ -1,12 +1,11 @@
-import { Media, type ImageWithTextBlock } from "@repo/payload-common/types";
-import { PageContent } from "../meta/page-content";
+import type { Media, ImageWithTextBlock } from "@repo/payload-common/types";
+import { PageContent } from "../../meta/page-content";
 
-type Props = {
+type Props = Omit<ImageWithTextBlock, "blockType"> & {
   image: Media;
-  text: ImageWithTextBlock["text"];
 };
 
-export function ImageWithTextNode({ image, text }: Props) {
+export default function ImageWithText({ image, text }: Props) {
   return (
     <div className="flex flex-wrap gap-4 mb-10 max-sm:flex-col max-sm:flex-nowrap max-sm:w-fit">
       <img

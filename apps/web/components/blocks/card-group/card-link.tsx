@@ -1,4 +1,4 @@
-import { type Page, type Media } from "@repo/payload-common/types";
+import type { Page, Media } from "@repo/payload-common/types";
 import Link from "next/link";
 import {
   Card,
@@ -6,9 +6,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "../../ui/card";
 import { ArrowForwardIos } from "@mui/icons-material";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 type Props = {
   title: string;
@@ -17,7 +17,7 @@ type Props = {
   link?: Page;
 };
 
-export function CardLink({ title, description, link, image }: Props) {
+export default function CardLink({ title, description, link, image }: Props) {
   return (
     <Link href={link?.url || ""} className="flex">
       <Card className="flex flex-col min-w-[150px] max-w-[350px] transition-colors hover:bg-muted">

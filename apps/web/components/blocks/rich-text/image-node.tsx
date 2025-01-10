@@ -16,6 +16,7 @@ export default function ImageNode({ content }: Props) {
         width={content.width || 1}
         src={content.url || ""}
         alt={content.alt}
+        className="ml-auto mr-auto"
       ></img>
     </div>
   );

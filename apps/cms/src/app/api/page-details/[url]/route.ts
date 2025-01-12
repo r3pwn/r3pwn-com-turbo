@@ -1,5 +1,5 @@
 import configPromise from '@payload-config'
-import { Page } from '@repo/payload-common/types'
+import { Page } from '@local/payload/types'
 import { getPayload, PaginatedDocs } from 'payload'
 
 const payload = await getPayload({

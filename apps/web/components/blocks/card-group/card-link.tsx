@@ -22,7 +22,7 @@ export default function CardLink({ title, description, link, image }: Props) {
     <Link href={link?.url || ""} className="flex">
       <Card className="flex flex-col min-w-[150px] max-w-[350px] transition-colors hover:bg-muted">
         <img
-          className="rounded-t-xl"
+          className="rounded-t-xl aspect-16/9 object-cover"
           src={image?.url || ""}
           alt={image?.alt || ""}
           width={350}

@@ -1,4 +1,4 @@
-import type { Page, Media } from "@repo/payload-common/types";
+import type { Page, Media } from "@local/payload/types";
 import Link from "next/link";
 import {
   Card,

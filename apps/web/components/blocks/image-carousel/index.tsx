@@ -1,4 +1,4 @@
-import type { ImageCarouselBlock, Media } from "@repo/payload-common/types";
+import type { ImageCarouselBlock, Media } from "@local/payload/types";
 import {
   Carousel,
   CarouselContent,

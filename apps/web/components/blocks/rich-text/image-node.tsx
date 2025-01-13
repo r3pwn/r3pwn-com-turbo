@@ -1,4 +1,4 @@
-import type { Media } from "@repo/payload-common/types";
+import type { Media } from "@local/payload/types";
 
 type Props = {
   content: Media;

@@ -1,5 +1,5 @@
 import { notFound, permanentRedirect } from "next/navigation";
-import { getPageByUrl, getPageList } from "../../providers/contentProvider";
+import { getPageByUrl, getPageList } from "@/providers/content-provider";
 import { PageHeader } from "@/components/meta/page-header";
 import { PageContent } from "@/components/meta/page-content";
 import { Metadata } from "next";

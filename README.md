@@ -10,9 +10,7 @@ This repo includes the following packages/apps:
 
 - `cms`: a [PayloadCMS](https://payloadcms.com/) instance
 - `web`: a [Next.js](https://nextjs.org/) app
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/payload-common`: a library holding auto-generated Payload types and supported icons for social links
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `@local/payload`: a library holding the Payload configuration, auto-generated Payload types, and supported icons for social links
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -29,7 +27,7 @@ This Turborepo has some additional tools already setup for you:
 To develop all apps and packages, run the following command:
 
 ```
-cd my-turborepo
+cd r3pwn-com-turbo
 pnpm dev
 ```
 
@@ -38,7 +36,7 @@ pnpm dev
 To build all apps and packages, run the following command:
 
 ```
-cd my-turborepo
+cd r3pwn-com-turbo
 pnpm build
 ```
 
@@ -49,7 +47,7 @@ Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo
 By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
 
 ```
-cd my-turborepo
+cd r3pwn-com-turbo
 npx turbo login
 ```
 

@@ -1,4 +1,4 @@
-import type { Media, ImageWithTextBlock } from "@repo/payload-common/types";
+import type { Media, ImageWithTextBlock } from "@local/payload/types";
 import { PageContent } from "../../meta/page-content";
 
 type Props = Omit<ImageWithTextBlock, "blockType"> & {

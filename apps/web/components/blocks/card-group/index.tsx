@@ -1,4 +1,4 @@
-import type { Page, CardGroupBlock, Media } from "@repo/payload-common/types";
+import type { Page, CardGroupBlock, Media } from "@local/payload/types";
 import CardLink from "./card-link";
 
 type Props = {

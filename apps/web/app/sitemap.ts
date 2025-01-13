@@ -1,4 +1,4 @@
-import { getPageList } from "@/providers/contentProvider";
+import { getPageList } from "@/providers/content-provider";
 import { MetadataRoute } from "next/types";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

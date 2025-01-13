@@ -1,4 +1,4 @@
-import type { Media, Page } from "@repo/payload-common/types";
+import type { Media, Page } from "@local/payload/types";
 import type { ElementType } from "react";
 import { type DisplayVariant, Typography } from "../../ui/typography";
 import ImageNode from "./image-node";

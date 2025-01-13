@@ -1,6 +1,6 @@
 import type { ContainerContent } from "../blocks/rich-text";
 import { Fragment } from "react";
-import { Page } from "@repo/payload-common/types";
+import { Page } from "@local/payload/types";
 import { cn } from "@/lib/utils";
 import RichTextNode from "../blocks/rich-text";
 import "../../css/page-content.css";

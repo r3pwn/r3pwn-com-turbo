@@ -1,4 +1,4 @@
-import type { DisqusCommentsBlock } from "@repo/payload-common/types";
+import type { DisqusCommentsBlock } from "@local/payload/types";
 import DisqusWrapper from "./disqus-wrapper";
 
 type Props = Omit<DisqusCommentsBlock, "blockType">;

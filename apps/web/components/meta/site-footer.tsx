@@ -1,5 +1,5 @@
-import { getIcon } from "@repo/payload-common/icons";
-import { NavigationData } from "@repo/payload-common/types";
+import { getIcon } from "@local/payload/icons";
+import { NavigationData } from "@local/payload/types";
 import { Typography } from "../ui/typography";
 import { Button } from "../ui/button";
 import Link from "next/link";

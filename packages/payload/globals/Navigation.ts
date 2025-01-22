@@ -1,5 +1,5 @@
 import { revalidateTags } from "../utils/revalidate-helper";
-import { getSupportedIcons } from "../icons";
+import { SUPPORTED_ICONS } from "@local/icons";
 import type { GlobalConfig } from "payload";
 
 export const Navigation: GlobalConfig = {
@@ -66,7 +66,7 @@ export const Navigation: GlobalConfig = {
                 {
                   name: "icon",
                   type: "select",
-                  options: getSupportedIcons().map((iconName) => ({
+                  options: SUPPORTED_ICONS.map((iconName) => ({
                     label: `${iconName.charAt(0).toUpperCase()}${iconName.slice(1)}`,
                     value: iconName,
                   })),

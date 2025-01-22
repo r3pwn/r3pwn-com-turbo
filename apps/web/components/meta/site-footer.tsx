@@ -1,4 +1,4 @@
-import { getIcon } from "@local/payload/icons";
+import { getIcon } from "@local/icons";
 import { NavigationData } from "@local/payload/types";
 import { Typography } from "../ui/typography";
 import { Button } from "../ui/button";
@@ -47,6 +47,7 @@ async function SocialLink({
   openInNewTab,
 }: SocialLinkProps) {
   const Icon = await getIcon(icon);
+
   return (
     <Button variant="secondary" size="icon" asChild>
       <Link
@@ -54,7 +55,7 @@ async function SocialLink({
         href={url}
         target={openInNewTab ? "_blank" : undefined}
       >
-        <Icon />
+        <Icon className="inline-block w-[1em] h-[1em] text-2xl fill-current select-none" />
       </Link>
     </Button>
   );

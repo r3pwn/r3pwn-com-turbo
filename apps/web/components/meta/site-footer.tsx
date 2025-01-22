@@ -40,8 +40,13 @@ type SocialLinkProps = {
   openInNewTab?: boolean;
 };
 
-function SocialLink({ ariaLabel, url, icon, openInNewTab }: SocialLinkProps) {
-  const Icon = getIcon(icon);
+async function SocialLink({
+  ariaLabel,
+  url,
+  icon,
+  openInNewTab,
+}: SocialLinkProps) {
+  const Icon = await getIcon(icon);
   return (
     <Button variant="secondary" size="icon" asChild>
       <Link
@@ -49,7 +54,7 @@ function SocialLink({ ariaLabel, url, icon, openInNewTab }: SocialLinkProps) {
         href={url}
         target={openInNewTab ? "_blank" : undefined}
       >
-        <Icon color="inherit" />
+        <Icon />
       </Link>
     </Button>
   );

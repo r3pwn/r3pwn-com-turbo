@@ -7,18 +7,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.3.0",
-    "@mui/material": "^6.3.0",
-    "payload": "^3.16.0",
-    "@payloadcms/db-mongodb": "^3.16.0",
-    "@payloadcms/next": "^3.16.0",
-    "@payloadcms/plugin-nested-docs": "^3.16.0",
-    "@payloadcms/plugin-seo": "^3.16.0",
-    "@payloadcms/richtext-lexical": "^3.16.0",
-    "@payloadcms/storage-gcs": "^3.16.0",
-    "sharp": "0.33.5",
-    "lexical": "0.20.0",
     "@lexical/headless": "0.20.0",
     "@lexical/html": "0.20.0",
     "@lexical/link": "0.20.0",
@@ -28,7 +16,16 @@
     "@lexical/rich-text": "0.20.0",
     "@lexical/selection": "0.20.0",
     "@lexical/table": "0.20.0",
-    "@lexical/utils": "0.20.0"
+    "@lexical/utils": "0.20.0",
+    "@payloadcms/db-mongodb": "^3.16.0",
+    "@payloadcms/next": "^3.16.0",
+    "@payloadcms/plugin-nested-docs": "^3.16.0",
+    "@payloadcms/plugin-seo": "^3.16.0",
+    "@payloadcms/richtext-lexical": "^3.16.0",
+    "@payloadcms/storage-gcs": "^3.16.0",
+    "lexical": "0.20.0",
+    "payload": "^3.16.0",
+    "sharp": "0.33.5"
   },
   "peerDependencies": {
     "payload": "^3.16.0",

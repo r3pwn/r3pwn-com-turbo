@@ -9,7 +9,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.32.0",
+    "@dotenvx/dotenvx": "^1.36.0",
     "@local/icons": "workspace:*",
     "@local/payload": "workspace:*",
     "@mui/icons-material": "^6.3.0",

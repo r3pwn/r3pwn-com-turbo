@@ -10,6 +10,23 @@
         "!.next/cache/**"
       ]
     },
+    "web-astro#build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "env": [
+        "DATABASE_URI",
+        "PAYLOAD_SECRET",
+        "REVALIDATE_SECRET",
+        "GCS_CREDENTIALS",
+        "GCS_BUCKET",
+        "PUBLIC_MEDIA_PREFIX",
+        "SITE_HOST"
+      ],
+      "outputs": [
+        ".astro/**"
+      ]
+    },
     "cms#build": {
       "dependsOn": [
         "^build"

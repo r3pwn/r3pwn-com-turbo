@@ -1,0 +1,24 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  url: string;
+  imageUrl: string;
+  siteName: string;
+}
+const { title, description, url, imageUrl, siteName } = Astro.props;
+
+const titleWithSiteName = `${title} | ${siteName}`;
+---
+
+<title>{titleWithSiteName}</title>
+<meta name="description" content={description}/>
+<meta property="og:title" content={titleWithSiteName}/>
+<meta property="og:description" content={description}/>
+<meta property="og:url" content={url}/>
+<meta property="og:site_name" content={siteName}/>
+<meta property="og:image" content={imageUrl}/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content={titleWithSiteName}/>
+<meta name="twitter:description" content={description}/>
+<meta name="twitter:image" content={imageUrl}/>

@@ -1,0 +1,59 @@
+---
+// Component Imports
+import BaseLayout from '@/layouts/base-layout.astro';
+
+import { getPageByUrl } from '@/providers/content-provider';
+
+import Typography from '@/components/ui/typography.astro';
+import OpenGraph, { type Props as OpenGraphProps } from '@/components/open-graph.astro';
+import type { Media } from '@local/payload/types';
+import PageHeader from '@/components/meta/page-header.astro';
+
+const { slug } = Astro.params;
+
+const pageUrl = slug ? `/${slug}` : '/';
+
+const page = await getPageByUrl(pageUrl);
+
+if (!page) {
+  return Astro.rewrite("/404")
+}
+
+const openGraph: OpenGraphProps = {
+  title: page.meta?.title || page.title,
+  description: page.meta?.description || page.subtitle || '',
+  url: pageUrl,
+  imageUrl: (page.meta?.image as Media).url || '',
+  siteName: 'r3pwn'
+}
+
+const showHeader = !!page.title && !!page.subtitle;
+const pageBreadcrumbs = [
+  { label: "Home", url: "/" },
+  ...page.breadcrumbs!.map((crumb) => ({
+    label: crumb.label || "",
+    url: crumb.url || "",
+  })),
+];
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <OpenGraph
+      title={page.meta?.title || page.title}
+      description={page.meta?.description || page.subtitle || ''}
+      url={pageUrl}
+      imageUrl={(page.meta?.image as Media).url || ''}
+      siteName="r3pwn"/>
+  </Fragment>
+  <Fragment>
+    {showHeader && <PageHeader
+        title={page.title}
+        subtitle={page.subtitle || ""}
+        breadcrumbs={pageBreadcrumbs}
+        class="mb-6"
+      />
+    }
+    {JSON.stringify(page, null, 4)}
+  </Fragment>
+</BaseLayout>

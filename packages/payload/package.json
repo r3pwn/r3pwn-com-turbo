@@ -7,29 +7,31 @@
     "access": "public"
   },
   "dependencies": {
-    "@lexical/headless": "0.20.0",
-    "@lexical/html": "0.20.0",
-    "@lexical/link": "0.20.0",
-    "@lexical/list": "0.20.0",
-    "@lexical/mark": "0.20.0",
-    "@lexical/react": "0.20.0",
-    "@lexical/rich-text": "0.20.0",
-    "@lexical/selection": "0.20.0",
-    "@lexical/table": "0.20.0",
-    "@lexical/utils": "0.20.0",
+    "@lexical/headless": "0.21.0",
+    "@lexical/html": "0.21.0",
+    "@lexical/link": "0.21.0",
+    "@lexical/list": "0.21.0",
+    "@lexical/mark": "0.21.0",
+    "@lexical/react": "0.21.0",
+    "@lexical/rich-text": "0.21.0",
+    "@lexical/selection": "0.21.0",
+    "@lexical/table": "0.21.0",
+    "@lexical/utils": "0.21.0",
     "@local/icons": "workspace:*",
-    "@payloadcms/db-mongodb": "^3.16.0",
-    "@payloadcms/next": "^3.16.0",
-    "@payloadcms/plugin-nested-docs": "^3.16.0",
-    "@payloadcms/plugin-seo": "^3.16.0",
-    "@payloadcms/richtext-lexical": "^3.16.0",
-    "@payloadcms/storage-gcs": "^3.16.0",
-    "lexical": "0.20.0",
-    "payload": "^3.16.0",
+    "@payloadcms/db-mongodb": "^3.23.0",
+    "@payloadcms/plugin-nested-docs": "^3.23.0",
+    "@payloadcms/plugin-seo": "^3.23.0",
+    "@payloadcms/richtext-lexical": "^3.23.0",
+    "@payloadcms/storage-gcs": "^3.23.0",
+    "lexical": "0.21.0",
+    "payload": "^3.23.0",
     "sharp": "0.33.5"
   },
   "peerDependencies": {
-    "payload": "^3.16.0",
+    "payload": "^3.23.0",
     "sharp": "0.33.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10"
   }
 }

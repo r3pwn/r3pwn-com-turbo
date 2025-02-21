@@ -45,13 +45,8 @@ export default buildConfig({
       ...defaultFeatures,
       ...rootFeatures,
       BlocksFeature({
-        blocks: [
-          CardGroup,
-          ImageCarousel,
-          DisqusComments,
-          ImageWithText,
-          RotatingText,
-        ],
+        blocks: [CardGroup, ImageCarousel, DisqusComments, ImageWithText],
+        inlineBlocks: [RotatingText],
       }),
       FixedToolbarFeature(),
       InlineCodeFeature(),

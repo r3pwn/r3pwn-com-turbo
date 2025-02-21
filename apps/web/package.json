@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.36.0",
+    "@emotion/styled": "^11.14.0",
     "@local/icons": "workspace:*",
     "@local/payload": "workspace:*",
     "@mui/icons-material": "^6.3.0",
@@ -22,8 +23,9 @@
     "clsx": "^2.1.1",
     "disqus-react": "^1.1.5",
     "embla-carousel-react": "^8.5.1",
+    "framer-motion": "^12.4.7",
     "next": "15.1.7",
-    "payload": "^3.23.0",
+    "payload": "^3.24.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sharp": "0.33.5",

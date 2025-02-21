@@ -26,6 +26,7 @@ import { DisqusComments } from "./blocks/DisqusComments";
 
 import { generatePreviewUrl } from "./utils/seo-helpers";
 import { ImageWithText } from "./blocks/ImageWithText";
+import { RotatingText } from "./blocks/RotatingText";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -44,7 +45,13 @@ export default buildConfig({
       ...defaultFeatures,
       ...rootFeatures,
       BlocksFeature({
-        blocks: [CardGroup, ImageCarousel, DisqusComments, ImageWithText],
+        blocks: [
+          CardGroup,
+          ImageCarousel,
+          DisqusComments,
+          ImageWithText,
+          RotatingText,
+        ],
       }),
       FixedToolbarFeature(),
       InlineCodeFeature(),

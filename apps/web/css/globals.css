@@ -109,3 +109,7 @@ header {
     @apply bg-background text-foreground;
   }
 }
+
+.clip-none {
+  clip-path: rect(0, 0, 0, 0);
+}

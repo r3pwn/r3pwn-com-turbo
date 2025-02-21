@@ -31,6 +31,7 @@ export default function RichTextNode({ content }: ContainerNodeProps) {
   switch (content.type) {
     case "upload":
       return <ImageNode content={(content as ContainerContent<Media>).value} />;
+    case "inlineBlock":
     case "block":
       return renderBlock(content.fields?.blockType, content.fields);
     case "heading":
@@ -115,7 +116,7 @@ function QuoteNode({ content }: ContainerNodeProps) {
   }
 
   return (
-    <Typography display={display} as="div">
+    <Typography display={display} as="div" className="empty:opacity-0">
       {content.children.map((textNode, index) => (
         <RichTextNode content={textNode as any} key={index} />
       ))}

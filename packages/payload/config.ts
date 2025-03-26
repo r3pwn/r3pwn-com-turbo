@@ -23,10 +23,11 @@ import { gcsStorage } from "@payloadcms/storage-gcs";
 import { CardGroup } from "./blocks/CardGroup";
 import { ImageCarousel } from "./blocks/ImageCarousel";
 import { DisqusComments } from "./blocks/DisqusComments";
-
-import { generatePreviewUrl } from "./utils/seo-helpers";
+import { GiscusComments } from "./blocks/GiscusComments";
 import { ImageWithText } from "./blocks/ImageWithText";
 import { RotatingText } from "./blocks/RotatingText";
+
+import { generatePreviewUrl } from "./utils/seo-helpers";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -45,7 +46,13 @@ export default buildConfig({
       ...defaultFeatures,
       ...rootFeatures,
       BlocksFeature({
-        blocks: [CardGroup, ImageCarousel, DisqusComments, ImageWithText],
+        blocks: [
+          CardGroup,
+          ImageCarousel,
+          DisqusComments,
+          GiscusComments,
+          ImageWithText,
+        ],
         inlineBlocks: [RotatingText],
       }),
       FixedToolbarFeature(),

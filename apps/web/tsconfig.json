@@ -24,6 +24,7 @@
     "target": "ES2017"
   },
   "include": [
+    "giscus.d.ts",
     "svgr.d.ts",
     "next-env.d.ts",
     "**/*.ts",

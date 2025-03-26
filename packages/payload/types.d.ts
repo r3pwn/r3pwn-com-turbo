@@ -480,6 +480,15 @@ export interface DisqusCommentsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GiscusCommentsBlock".
+ */
+export interface GiscusCommentsBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'giscus-comments';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "RotatingTextBlock".
  */
 export interface RotatingTextBlock {

@@ -19,14 +19,6 @@ if (!page) {
   return Astro.rewrite("/404")
 }
 
-const openGraph: OpenGraphProps = {
-  title: page.meta?.title || page.title,
-  description: page.meta?.description || page.subtitle || '',
-  url: pageUrl,
-  imageUrl: (page.meta?.image as Media).url || '',
-  siteName: 'r3pwn'
-}
-
 const showHeader = !!page.title && !!page.subtitle;
 const pageBreadcrumbs = [
   { label: "Home", url: "/" },
@@ -43,7 +35,7 @@ const pageBreadcrumbs = [
       title={page.meta?.title || page.title}
       description={page.meta?.description || page.subtitle || ''}
       url={pageUrl}
-      imageUrl={(page.meta?.image as Media).url || ''}
+      imageUrl={(page.meta?.image as Media)?.url || ''}
       siteName="r3pwn"/>
   </Fragment>
   <Fragment>

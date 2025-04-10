@@ -1,0 +1,59 @@
+---
+import BreadcrumbRoot from "../ui/breadcrumbs/breadcrumb-root.astro"
+import BreadcrumbList from "../ui/breadcrumbs/breadcrumb-list.astro"
+import BreadcrumbItem from "../ui/breadcrumbs/breadcrumb-item.astro"
+import BreadcrumbLink from "../ui/breadcrumbs/breadcrumb-link.astro"
+import { Icon } from 'astro-icon/components'
+
+interface ComponentProps {
+  breadcrumbs: {
+    label: string;
+    url: string,
+  }[]
+  class?: string;
+}
+
+export interface Props extends ComponentProps {}
+const { breadcrumbs, ...attrs } = Astro.props;
+
+const previousCrumb = breadcrumbs.at(-2);
+---
+
+<BreadcrumbRoot {...attrs}>
+  <BreadcrumbList class="flex max-md:hidden">
+    {breadcrumbs.map((crumb, index) => (
+      <Fragment key={index}>
+        <BreadcrumbItem>
+          {index === breadcrumbs.length - 1 && (
+            <div class="text-primary">{crumb.label}</div>
+          )}
+          {index !== breadcrumbs.length - 1 && (
+            <BreadcrumbLink href={crumb.url}>{crumb.label}</BreadcrumbLink>
+          )}
+        </BreadcrumbItem>
+        {index != breadcrumbs.length - 1 && <li
+          role="presentation"
+          aria-hidden="true"
+          class="[&>svg]:size-3.5"
+        >
+          <Icon name="chevron-right" />
+        </li>}
+      </Fragment>
+    ))}
+  </BreadcrumbList>
+  {previousCrumb ? (
+    <BreadcrumbList class="hidden max-md:flex">
+      <BreadcrumbItem>
+        <BreadcrumbLink
+          class="flex items-center"
+          href={previousCrumb.url}
+        >
+          <Icon name="chevron-left" height={16} width={16} />
+          {previousCrumb.label}
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  ) : (
+    <></>
+  )}
+</BreadcrumbRoot>

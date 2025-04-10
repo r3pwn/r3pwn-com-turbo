@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 import Typography from '../ui/typography.astro';
+import Breadcrumbs from './breadcrumbs.astro';
 
 interface ComponentProps {
   title: string;
@@ -16,9 +17,9 @@ const { title, subtitle, breadcrumbs, ...attrs } = Astro.props;
 ---
 
 <div {...attrs}>
-  {/*breadcrumbs && (
-    <SmartBreadcrumbs breadcrumbs={breadcrumbs} className="mb-2" />
-  )*/}
+  {breadcrumbs && (
+    <Breadcrumbs breadcrumbs={breadcrumbs} class="mb-2" />
+  )}
   <Typography as="h1" display="heading-xl">
     {title}
   </Typography>

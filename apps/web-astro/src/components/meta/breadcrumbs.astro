@@ -1,5 +1,4 @@
 ---
-import BreadcrumbRoot from "../ui/breadcrumbs/breadcrumb-root.astro"
 import BreadcrumbList from "../ui/breadcrumbs/breadcrumb-list.astro"
 import BreadcrumbItem from "../ui/breadcrumbs/breadcrumb-item.astro"
 import BreadcrumbLink from "../ui/breadcrumbs/breadcrumb-link.astro"
@@ -19,7 +18,7 @@ const { breadcrumbs, ...attrs } = Astro.props;
 const previousCrumb = breadcrumbs.at(-2);
 ---
 
-<BreadcrumbRoot {...attrs}>
+<nav aria-label="breadcrumb" {...attrs}>
   <BreadcrumbList class="flex max-md:hidden">
     {breadcrumbs.map((crumb, index) => (
       <Fragment key={index}>
@@ -56,4 +55,4 @@ const previousCrumb = breadcrumbs.at(-2);
   ) : (
     <></>
   )}
-</BreadcrumbRoot>
+</nav>

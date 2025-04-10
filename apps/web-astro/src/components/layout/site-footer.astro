@@ -1,0 +1,26 @@
+---
+import type { Footer } from "@local/payload/types";
+import Typography from "../ui/typography.astro";
+import SocialLink from "./social-link.astro";
+
+export interface Props extends Footer {}
+const { socialLinks, copyrightText } = Astro.props;
+---
+
+<footer class="border-t-2 flex flex-col items-center mt-auto bg-card">
+  <div class="flex my-1 gap-1 flex-wrap">
+    {
+      socialLinks?.map((link) => (
+        <SocialLink
+          ariaLabel={link.ariaLabel || undefined}
+          url={link.url || "/"}
+          icon={link.icon || ""}
+          openInNewTab={link.openInNewTab || false}
+        />
+      ))
+    }
+  </div>
+  <Typography display="body-sm" class="mb-1 text-muted-foreground">
+    {copyrightText}
+  </Typography>
+</footer>

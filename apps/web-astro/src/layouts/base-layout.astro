@@ -1,19 +1,37 @@
 ---
 import "@fontsource-variable/dm-sans";
 import "@/styles/globals.css";
+import SiteFooter from "@/components/layout/site-footer.astro";
+import SiteHeader from "@/components/layout/site-header.astro";
+import { getNavigation } from "@/providers/content-provider";
+import type { Page } from "@local/payload/types";
+
+const nav = await getNavigation();
+
+const navLinks = nav.header?.navigationLinks?.map((link) => {
+  return {
+    label: link.label,
+    url: (link.target as Page)?.url || "/",
+  };
+});
 ---
 
 <html lang="en" class="dark">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <slot name="head" />
-	</head>
-	<body>
-		<main class="page-container">
-			<slot />
-		</main>
-	</body>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <SiteHeader />
+    <main class="page-container">
+      <slot />
+    </main>
+    <SiteFooter
+      socialLinks={nav.footer?.socialLinks || []}
+      copyrightText={nav.footer?.copyrightText || ""}
+    />
+  </body>
 </html>

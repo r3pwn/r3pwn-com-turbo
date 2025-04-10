@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "../ui/button.astro";
+
+export interface Props {
+  ariaLabel?: string;
+  url: string;
+  icon: string;
+  openInNewTab?: boolean;
+}
+const { ariaLabel, url, icon, openInNewTab } = Astro.props;
+---
+
+<Button
+  variant="secondary"
+  size="icon"
+  as="a"
+  aria-label={ariaLabel}
+  href={url}
+  target={openInNewTab ? "_blank" : undefined}
+>
+  <Icon
+    name={icon}
+    class="inline-block w-[1em] h-[1em] text-2xl fill-current select-none"
+  />
+</Button>

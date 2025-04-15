@@ -214,6 +214,9 @@ importers:
       astro-icon:
         specifier: ^1.1.5
         version: 1.1.5
+      astro-navbar:
+        specifier: ^2.3.9
+        version: 2.3.9
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -2664,6 +2667,9 @@ packages:
 
   astro-icon@1.1.5:
     resolution: {integrity: sha512-CJYS5nWOw9jz4RpGWmzNQY7D0y2ZZacH7atL2K9DeJXJVaz7/5WrxeyIxO8KASk1jCM96Q4LjRx/F3R+InjJrw==}
+
+  astro-navbar@2.3.9:
+    resolution: {integrity: sha512-1FpVpVbOHlXT0vi/GvHb49y5LmH3yYcSO39pcyUDZ6eISjv/d3PlUg9C84h9o5TFxb4VzkSKfI+kvvMkCfHvEg==}
 
   astro@5.6.1:
     resolution: {integrity: sha512-aQ2TV7wIf+q2Oi6gGWMINHWEAZqoP0eH6/mihodfTJYATPWyd03JIGVfjtYUJlkNdNSKxDXwEe/r/Zx4CZ1FPg==}
@@ -8819,6 +8825,8 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - supports-color
+
+  astro-navbar@2.3.9: {}
 
   astro@5.6.1(@types/node@22.13.4)(jiti@1.21.7)(rollup@4.34.8)(sass@1.77.4)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.7.0):
     dependencies:

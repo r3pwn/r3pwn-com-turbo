@@ -3,6 +3,14 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { Icon } from "astro-icon/components";
 import Button from "../ui/button.astro";
 import { Image } from "astro:assets";
+
+export interface Props {
+  links?: {
+    label: string;
+    url: string;
+  }[];
+}
+const { links = [] } = Astro.props;
 ---
 
 <header class="bg-card border-b-2 md:flex">
@@ -32,60 +40,36 @@ import { Image } from "astro:assets";
     </div>
     <MenuItems class="hidden md:hidden">
       <ul>
-        <li>
-          <Button variant="link" as="a" href="/">
-            Blog posts
-            <span class="ml-2 text-xs">
-              <Icon
-                name="chevron-right"
-                font-size="inherit"
-                height={16}
-                width={16}
-              />
-            </span>
-          </Button>
-        </li>
-        <li>
-          <Button variant="link" as="a" href="/">
-            Projects
-            <span class="ml-2 text-xs">
-              <Icon
-                name="chevron-right"
-                font-size="inherit"
-                height={16}
-                width={16}
-              />
-            </span>
-          </Button>
-        </li>
-        <li>
-          <Button variant="link" as="a" href="/">
-            Hackathons
-            <span class="ml-2 text-xs">
-              <Icon
-                name="chevron-right"
-                font-size="inherit"
-                height={16}
-                width={16}
-              />
-            </span>
-          </Button>
-        </li>
+        {
+          links.map((link) => (
+            <li>
+              <Button variant="link" as="a" href={link.url}>
+                {link.label}
+                <span class="ml-2 text-xs">
+                  <Icon
+                    name="chevron-right"
+                    font-size="inherit"
+                    height={16}
+                    width={16}
+                  />
+                </span>
+              </Button>
+            </li>
+          ))
+        }
       </ul>
     </MenuItems>
     <MenuItems class="hidden max-md:hidden md:flex">
       <ul class="flex flex-row gap-2 mt-auto mb-auto ml-4">
-        <li>
-          <Button variant="secondary" as="a" href="/blog">Blog posts</Button>
-        </li>
-        <li>
-          <Button variant="secondary" as="a" href="/projects">Projects</Button>
-        </li>
-        <li>
-          <Button variant="secondary" as="a" href="/hackathons"
-            >Hackathons</Button
-          >
-        </li>
+        {
+          links.map((link) => (
+            <li>
+              <Button variant="secondary" as="a" href={link.url}>
+                {link.label}
+              </Button>
+            </li>
+          ))
+        }
       </ul>
     </MenuItems>
   </Astronav>

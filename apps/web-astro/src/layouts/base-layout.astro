@@ -25,7 +25,7 @@ const navLinks = nav.header?.navigationLinks?.map((link) => {
     <slot name="head" />
   </head>
   <body class="flex flex-col min-h-screen">
-    <SiteHeader />
+    <SiteHeader links={navLinks} />
     <main class="page-container">
       <slot />
     </main>

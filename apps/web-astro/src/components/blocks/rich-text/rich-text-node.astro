@@ -1,0 +1,76 @@
+---
+import Typography from "@/components/ui/typography.astro";
+import {
+  getTextClasses,
+  HeadingVariants,
+  type ContainerContent,
+} from "./common";
+import { Debug } from "astro:components";
+
+interface ComponentProps {
+  content: ContainerContent<any>;
+}
+
+export interface Props extends ComponentProps {}
+const { content } = Astro.props;
+---
+
+{
+  content.children?.map((item) => {
+    const componentTag = (item as any).tag;
+
+    switch (item.type) {
+      case "heading":
+        return (
+          <Typography
+            as={componentTag}
+            display={HeadingVariants[componentTag] || "body-lg"}
+          >
+            <Astro.self content={item as any} />
+          </Typography>
+        );
+      case "horizontalrule":
+        return <hr class="my-4" />;
+      case "linebreak":
+        return <br />;
+      case "list":
+        return (
+          <Typography
+            as={componentTag}
+            display="list"
+            class={componentTag === "ol" ? "list-decimal" : "list-disc"}
+          >
+            <Astro.self content={item as any} />
+          </Typography>
+        );
+      case "listitem":
+        return (
+          <Typography as="li">
+            <Astro.self content={item as any} />
+          </Typography>
+        );
+      case "paragraph":
+        return (
+          <Typography as="p">
+            <Astro.self content={item as any} />
+          </Typography>
+        );
+      case "text":
+        return (
+          <Typography class={getTextClasses(item.format as unknown as number)}>
+            {(item as any).text}
+          </Typography>
+        );
+      default:
+        console.warn(`Unknown content type ${item.type}`);
+    }
+    return <Debug {item} />;
+  })
+}
+{
+  !content.children && (
+    <Typography class={getTextClasses(content.format as unknown as number)}>
+      {(content as any).text}
+    </Typography>
+  )
+}

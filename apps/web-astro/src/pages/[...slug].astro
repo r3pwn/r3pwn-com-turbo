@@ -1,22 +1,24 @@
 ---
 // Component Imports
-import BaseLayout from '@/layouts/base-layout.astro';
+import BaseLayout from "@/layouts/base-layout.astro";
 
-import { getPageByUrl } from '@/providers/content-provider';
+import { getPageByUrl } from "@/providers/content-provider";
 
-import Typography from '@/components/ui/typography.astro';
-import OpenGraph, { type Props as OpenGraphProps } from '@/components/open-graph.astro';
-import type { Media } from '@local/payload/types';
-import PageHeader from '@/components/meta/page-header.astro';
+import RichTextNode from "@/components/blocks/rich-text/rich-text-node.astro";
+import OpenGraph from "@/components/open-graph.astro";
+import type { Media } from "@local/payload/types";
+import PageHeader from "@/components/meta/page-header.astro";
+import "@/styles/page-content.css";
+import Typography from "@/components/ui/typography.astro";
 
 const { slug } = Astro.params;
 
-const pageUrl = slug ? `/${slug}` : '/';
+const pageUrl = slug ? `/${slug}` : "/";
 
 const page = await getPageByUrl(pageUrl);
 
 if (!page) {
-  return Astro.rewrite("/404")
+  return Astro.rewrite("/404");
 }
 
 const showHeader = !!page.title && !!page.subtitle;
@@ -33,19 +35,25 @@ const pageBreadcrumbs = [
   <Fragment slot="head">
     <OpenGraph
       title={page.meta?.title || page.title}
-      description={page.meta?.description || page.subtitle || ''}
+      description={page.meta?.description || page.subtitle || ""}
       url={pageUrl}
-      imageUrl={(page.meta?.image as Media)?.url || ''}
-      siteName="r3pwn"/>
+      imageUrl={(page.meta?.image as Media)?.url || ""}
+      siteName="r3pwn"
+    />
   </Fragment>
   <Fragment>
-    {showHeader && <PageHeader
-        title={page.title}
-        subtitle={page.subtitle || ""}
-        breadcrumbs={pageBreadcrumbs}
-        class="mb-6"
-      />
+    {
+      showHeader && (
+        <PageHeader
+          title={page.title}
+          subtitle={page.subtitle || ""}
+          breadcrumbs={pageBreadcrumbs}
+          class="mb-6"
+        />
+      )
     }
-    {JSON.stringify(page, null, 4)}
+    <div class="[&>p]:my-1 rich-text-root">
+      <RichTextNode content={page.content?.root as any} />
+    </div>
   </Fragment>
 </BaseLayout>

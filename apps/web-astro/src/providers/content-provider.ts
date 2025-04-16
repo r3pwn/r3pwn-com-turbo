@@ -2,7 +2,7 @@ import { getPayload } from "payload";
 import config from "@local/payload/config";
 
 const payload = await getPayload({
-  config,
+  config: await config,
 });
 
 type AbridgedPageData = {

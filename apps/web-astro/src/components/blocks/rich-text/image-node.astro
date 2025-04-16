@@ -1,0 +1,19 @@
+---
+import type { Media } from "@local/payload/types";
+import { Image } from "astro:assets";
+
+export interface Props {
+  media: Media;
+}
+const { media } = Astro.props;
+---
+
+<div class="content-image">
+  <Image
+    height={media.height || 1}
+    width={media.width || 1}
+    src={media.url || ""}
+    alt={media.alt}
+    class="ml-auto mr-auto"
+  />
+</div>

@@ -6,6 +6,8 @@ import {
   type ContainerContent,
 } from "./common";
 import { Debug } from "astro:components";
+import ImageNode from "./image-node.astro";
+import type { Media } from "@local/payload/types";
 
 interface ComponentProps {
   content: ContainerContent<any>;
@@ -20,6 +22,8 @@ const { content } = Astro.props;
     const componentTag = (item as any).tag;
 
     switch (item.type) {
+      case "upload":
+        return <ImageNode media={(item as ContainerContent<Media>).value} />;
       case "heading":
         return (
           <Typography

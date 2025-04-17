@@ -3,6 +3,8 @@ import Typography from "@/components/ui/typography.astro";
 import {
   getTextClasses,
   HeadingVariants,
+  TextFormatClasses,
+  TextFormats,
   type ContainerContent,
 } from "./common";
 import { Debug } from "astro:components";
@@ -37,6 +39,17 @@ const { content } = Astro.props;
         return <hr class="my-4" />;
       case "linebreak":
         return <br />;
+      case "link":
+      case "autolink":
+        return (
+          <a
+            href={(item as any).fields?.url}
+            target={(item as any).fields?.newTab ? "_blank" : undefined}
+            class={TextFormatClasses.LINK}
+          >
+            <Astro.self content={item as any} />
+          </a>
+        );
       case "list":
         return (
           <Typography
@@ -56,6 +69,24 @@ const { content } = Astro.props;
       case "paragraph":
         return (
           <Typography as="p">
+            <Astro.self content={item as any} />
+          </Typography>
+        );
+      case "quote":
+        let display = "quote";
+        if (
+          (item.children as any[]).every(
+            (textNode) =>
+              textNode.type === "linebreak" ||
+              textNode.type === "autolink" ||
+              (textNode.format as number) & TextFormats.CODE
+          )
+        ) {
+          display = "code-block";
+        }
+
+        return (
+          <Typography display={display} as="div" class="empty:opacity-0">
             <Astro.self content={item as any} />
           </Typography>
         );

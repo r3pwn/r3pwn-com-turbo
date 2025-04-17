@@ -40,6 +40,6 @@ const {
 } = Astro.props;
 ---
 
-<Element class={cn(textVariants({ display, className }))} {...attrs}>
-  <slot />
-</Element>
+<Element class={cn(textVariants({ display, className }))} {...attrs}
+  ><slot /></Element
+>

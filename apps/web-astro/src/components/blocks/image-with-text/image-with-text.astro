@@ -1,0 +1,23 @@
+---
+import type { ImageWithTextBlock, Media } from "@local/payload/types";
+import RichTextNode from "../rich-text/rich-text-node.astro";
+
+export interface Props extends Omit<ImageWithTextBlock, "blockType"> {
+  image: Media;
+}
+
+const { image, text } = Astro.props as Props;
+---
+
+<div
+  class="flex flex-wrap gap-4 mb-10 max-sm:flex-col max-sm:flex-nowrap max-sm:w-fit"
+>
+  <img
+    src={image.url || ""}
+    alt={image.alt}
+    class="w-[300px] h-auto aspect-square rounded-full max-sm:mx-auto"
+  />
+  <div class="[&>p]:my-1 sm:basis-[300px] grow">
+    <RichTextNode content={text!.root as any} />
+  </div>
+</div>

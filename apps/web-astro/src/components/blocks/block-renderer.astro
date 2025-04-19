@@ -1,0 +1,33 @@
+---
+import { Debug } from "astro:components";
+
+export interface Props {
+  content: {
+    type: string;
+    [key: string]: any;
+  };
+}
+const { content } = Astro.props as Props;
+
+let Element: any;
+let props: any;
+
+// Dynamically import the component based on the content type
+switch (content.blockType) {
+  case "card-group":
+    Element = (await import("./card-block/card-block.astro")).default;
+    props = content;
+    break;
+  case "image-with-text":
+    Element = (await import("./image-with-text/image-with-text.astro")).default;
+    props = content;
+    break;
+  default:
+    Element = Debug;
+    props = {
+      content,
+    };
+}
+---
+
+<Element {...props} />

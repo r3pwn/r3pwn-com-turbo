@@ -1,0 +1,49 @@
+---
+import Button from "@/components/ui/button.astro";
+import Typography from "@/components/ui/typography.astro";
+import { cn } from "@/lib/utils";
+import type { Media, Page } from "@local/payload/types";
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  title: string;
+  description?: string;
+  link?: Page;
+  image?: Media;
+  [key: string]: any;
+}
+const { title, description, link, image, class: className } = Astro.props;
+---
+
+<a href={link?.url || ""} class="flex">
+  <div
+    class="rounded-xl border bg-card text-card-foreground shadow flex flex-col min-w-[150px] max-w-[350px] transition-colors hover:bg-muted"
+  >
+    <img
+      class="rounded-t-xl aspect-16/9 object-cover"
+      src={image?.url || ""}
+      alt={image?.alt || ""}
+      width={350}
+      height={175}
+    />
+    <div class="flex flex-col space-y-1.5 p-6 mb-auto">
+      <Typography as="h2" display="body-lg">{title}</Typography>
+      {
+        description && (
+          <Typography
+            as="p"
+            display="body-sm"
+            className={cn("text-muted-foreground !mt-0", className)}
+          >
+            {description}
+          </Typography>
+        )
+      }
+    </div>
+    <div class="flex items-center p-6 pt-0 justify-end">
+      <Button variant="ghost" size="icon" component="div">
+        <Icon name="chevron-right" height={16} width={16} />
+      </Button>
+    </div>
+  </div>
+</a>

@@ -10,6 +10,7 @@ import {
 import { Debug } from "astro:components";
 import ImageNode from "./image-node.astro";
 import type { Media } from "@local/payload/types";
+import BlockRenderer from "../block-renderer.astro";
 
 interface ComponentProps {
   content: ContainerContent<any>;
@@ -24,6 +25,9 @@ const { content } = Astro.props;
     const componentTag = (item as any).tag;
 
     switch (item.type) {
+      case "block":
+      case "inlineBlock":
+        return <BlockRenderer content={item.fields as any} />;
       case "upload":
         return <ImageNode media={(item as ContainerContent<Media>).value} />;
       case "heading":

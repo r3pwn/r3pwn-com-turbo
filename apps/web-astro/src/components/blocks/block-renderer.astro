@@ -22,6 +22,11 @@ switch (content.blockType) {
     Element = (await import("./image-with-text/image-with-text.astro")).default;
     props = content;
     break;
+  case "rotating-text":
+    Element = (await import("./rotating-text/rotating-text-block.astro"))
+      .default;
+    props = content;
+    break;
   default:
     Element = Debug;
     props = {

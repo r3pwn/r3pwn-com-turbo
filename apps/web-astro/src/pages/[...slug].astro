@@ -4,12 +4,11 @@ import BaseLayout from "@/layouts/base-layout.astro";
 
 import { getPageByUrl } from "@/providers/content-provider";
 
-import RichTextNode from "@/components/blocks/rich-text/rich-text-node.astro";
+import RichTextNode from "@/components/blocks/rich-text/block.astro";
 import OpenGraph from "@/components/open-graph.astro";
 import type { Media } from "@local/payload/types";
 import PageHeader from "@/components/meta/page-header.astro";
 import "@/styles/page-content.css";
-import Typography from "@/components/ui/typography.astro";
 
 const { slug } = Astro.params;
 

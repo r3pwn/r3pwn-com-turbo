@@ -1,6 +1,6 @@
 ---
 import type { ImageWithTextBlock, Media } from "@local/payload/types";
-import RichTextNode from "../rich-text/rich-text-node.astro";
+import RichTextNode from "../rich-text/block.astro";
 
 export interface Props extends Omit<ImageWithTextBlock, "blockType"> {
   image: Media;

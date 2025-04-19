@@ -33,7 +33,7 @@ const { title, description, link, image, class: className } = Astro.props;
           <Typography
             as="p"
             display="body-sm"
-            className={cn("text-muted-foreground !mt-0", className)}
+            class={cn("text-muted-foreground !mt-0", className)}
           >
             {description}
           </Typography>
@@ -41,8 +41,8 @@ const { title, description, link, image, class: className } = Astro.props;
       }
     </div>
     <div class="flex items-center p-6 pt-0 justify-end">
-      <Button variant="ghost" size="icon" component="div">
-        <Icon name="chevron-right" height={16} width={16} />
+      <Button variant="ghost" size="icon" as="div">
+        <Icon name="chevron-right" height={32} width={32} />
       </Button>
     </div>
   </div>

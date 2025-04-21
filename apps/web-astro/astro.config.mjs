@@ -20,5 +20,9 @@ export default defineConfig({
     })
   ],
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    isr: {
+      bypassToken: process.env.REVALIDATE_SECRET,
+    }
+  }),
 });

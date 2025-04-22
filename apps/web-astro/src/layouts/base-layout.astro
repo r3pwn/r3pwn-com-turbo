@@ -1,11 +1,10 @@
 ---
-import "@fontsource-variable/dm-sans";
-import dmSansWoff2 from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 import "@/styles/globals.css";
 import SiteFooter from "@/components/layout/site-footer.astro";
 import SiteHeader from "@/components/layout/site-header.astro";
 import { getNavigation } from "@/providers/content-provider";
 import type { Page } from "@local/payload/types";
+import { Font } from "astro:assets";
 
 const nav = await getNavigation();
 
@@ -23,13 +22,8 @@ const navLinks = nav.header?.navigationLinks?.map((link) => {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href={dmSansWoff2}
-      crossorigin="anonymous"
-    />
+
+    <Font cssVariable="--font-dm-sans" preload />
 
     <slot name="head" />
   </head>

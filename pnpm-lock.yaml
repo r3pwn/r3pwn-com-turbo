@@ -199,9 +199,6 @@ importers:
       '@dotenvx/dotenvx':
         specifier: ^1.36.0
         version: 1.37.0
-      '@fontsource-variable/dm-sans':
-        specifier: ^5.2.5
-        version: 5.2.5
       '@local/icons':
         specifier: workspace:*
         version: link:../../packages/icons
@@ -1374,9 +1371,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@fontsource-variable/dm-sans@5.2.5':
-    resolution: {integrity: sha512-ynWdb1Ncn5ywUOE6OkTsvgjkiZKj+xM/GS2iVE47MBvS3AlfOSyOy3xynfkQsM3ngaxdCamT/06hZGAgPmao0A==}
 
   '@google-cloud/paginator@5.0.2':
     resolution: {integrity: sha512-DJS3s0OVH4zFDB1PzjxAsHqJT6sKVbRwwML0ZBP9PbU7Yebtu/7SWMRzvO2J3nUi9pRNITCfu4LJeooM2w4pjg==}
@@ -7429,8 +7423,6 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@fontsource-variable/dm-sans@5.2.5': {}
 
   '@google-cloud/paginator@5.0.2':
     dependencies:

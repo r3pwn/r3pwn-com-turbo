@@ -1,5 +1,3 @@
-@tailwind utilities;
-
 .rich-text-root > .content-image {
   width: 100%;
   @media screen(md) {

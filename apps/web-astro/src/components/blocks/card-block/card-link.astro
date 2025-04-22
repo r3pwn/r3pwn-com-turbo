@@ -4,6 +4,7 @@ import Typography from "@/components/ui/typography.astro";
 import { cn } from "@/lib/utils";
 import type { Media, Page } from "@local/payload/types";
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 
 export interface Props {
   title: string;
@@ -19,8 +20,8 @@ const { title, description, link, image, class: className } = Astro.props;
   <div
     class="rounded-xl border bg-card text-card-foreground shadow flex flex-col min-w-[150px] max-w-[350px] transition-colors hover:bg-muted"
   >
-    <img
-      class="rounded-t-xl aspect-16/9 object-cover"
+    <Image
+      class="rounded-t-xl aspect-video object-cover"
       src={image?.url || ""}
       alt={image?.alt || ""}
       width={350}

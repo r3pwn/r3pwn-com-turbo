@@ -18,6 +18,14 @@ switch (content.blockType) {
     Element = (await import("./card-block/block.astro")).default;
     props = content;
     break;
+  case "disqus-comments":
+    Element = (await import("./disqus-comments/block.astro")).default;
+    props = content;
+    break;
+  case "giscus-comments":
+    Element = (await import("./giscus-comments/block.astro")).default;
+    props = {};
+    break;
   case "image-with-text":
     Element = (await import("./image-with-text/block.astro")).default;
     props = content;

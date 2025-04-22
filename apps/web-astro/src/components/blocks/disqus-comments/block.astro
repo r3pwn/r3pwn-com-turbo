@@ -1,0 +1,40 @@
+---
+import type { DisqusCommentsBlock } from "@local/payload/types";
+
+export interface Props extends Omit<DisqusCommentsBlock, "blockType"> {}
+const { url, identifier } = Astro.props;
+---
+
+<div
+  id="disqus_thread"
+  data-url={url}
+  data-identifier={identifier}
+  data-shortname="r3pwn"
+>
+</div>
+<script is:inline>
+  const commentsContainer = document.querySelector("#disqus_thread");
+
+  var disqus_config = function () {
+    const { url, identifier } = commentsContainer.dataset;
+
+    this.page.url = url;
+    this.page.identifier = identifier;
+  };
+
+  (function () {
+    var d = document,
+      s = d.createElement("script");
+
+    s.src = `https://${commentsContainer.dataset.shortname}.disqus.com/embed.js`;
+
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+    comments powered by Disqus.
+  </a>
+</noscript>

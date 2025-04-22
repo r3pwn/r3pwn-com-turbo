@@ -26,6 +26,10 @@ switch (content.blockType) {
     Element = (await import("./giscus-comments/block.astro")).default;
     props = {};
     break;
+  case "image-carousel":
+    Element = (await import("./image-carousel/block.astro")).default;
+    props = content;
+    break;
   case "image-with-text":
     Element = (await import("./image-with-text/block.astro")).default;
     props = content;

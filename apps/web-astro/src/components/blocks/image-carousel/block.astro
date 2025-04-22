@@ -1,0 +1,13 @@
+---
+import type { ImageCarouselBlock, Media } from "@local/payload/types";
+import ImageCarouselWrapper from "./carousel-wrapper";
+
+export interface Props
+  extends Omit<ImageCarouselBlock, "blockType" | "images"> {
+  images: { image: Media }[];
+}
+
+const { images } = Astro.props;
+---
+
+<ImageCarouselWrapper images={images} client:load />

@@ -27,9 +27,12 @@ export default defineConfig({
   }),
   experimental: {
     fonts: [{
-      provider: fontProviders.fontsource(),
+      provider: fontProviders.google(),
       name: "DM Sans",
-      cssVariable: "--font-dm-sans"
+      cssVariable: "--font-dm-sans",
+      weights: ["100 1000"],
+      styles: ["normal"],
+      display: "swap"
     }]
   }
 });

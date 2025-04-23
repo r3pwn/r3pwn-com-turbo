@@ -2,11 +2,14 @@
 import "@/styles/globals.css";
 import SiteFooter from "@/components/layout/site-footer.astro";
 import SiteHeader from "@/components/layout/site-header.astro";
-import { getNavigation } from "@/providers/content-provider";
-import type { Page } from "@local/payload/types";
+import type { NavigationData, Page } from "@local/payload/types";
 import { Font } from "astro:assets";
 
-const nav = await getNavigation();
+export interface Props {
+  nav: NavigationData;
+}
+
+const { nav } = Astro.props;
 
 const navLinks = nav.header?.navigationLinks?.map((link) => {
   return {

@@ -2,17 +2,27 @@
 // Component Imports
 import BaseLayout from "@/layouts/base-layout.astro";
 
-import { getPageByUrl } from "@/providers/content-provider";
+import { getNavigation, getPageByUrl } from "@/providers/content-provider";
 
 import RichTextNode from "@/components/blocks/rich-text/block.astro";
 import OpenGraph from "@/components/open-graph.astro";
-import type { Media } from "@local/payload/types";
+import type { Media, Page } from "@local/payload/types";
 import PageHeader from "@/components/meta/page-header.astro";
 import "@/styles/page-content.css";
 
 const { slug } = Astro.params;
 
 const pageUrl = slug ? `/${slug}` : "/";
+
+const nav = await getNavigation();
+
+const redirectTarget = nav.redirects?.redirects?.find(
+  (redirect) => redirect.path === pageUrl
+)?.destination as Page | undefined;
+
+if (redirectTarget) {
+  return Astro.redirect(redirectTarget.url);
+}
 
 const page = await getPageByUrl(pageUrl);
 
@@ -30,7 +40,7 @@ const pageBreadcrumbs = [
 ];
 ---
 
-<BaseLayout>
+<BaseLayout nav={nav}>
   <Fragment slot="head">
     <OpenGraph
       title={page.meta?.title || page.title}

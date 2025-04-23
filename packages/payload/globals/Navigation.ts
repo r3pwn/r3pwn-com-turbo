@@ -85,6 +85,30 @@ export const Navigation: GlobalConfig = {
             },
           ],
         },
+        {
+          name: "redirects",
+          interfaceName: "Redirects",
+          fields: [
+            {
+              name: "redirects",
+              type: "array",
+              label: "Redirects",
+              fields: [
+                {
+                  name: "path",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "destination",
+                  type: "relationship",
+                  relationTo: "pages",
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],

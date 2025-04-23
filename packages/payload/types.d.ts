@@ -363,6 +363,7 @@ export interface NavigationData {
   id: string;
   header?: Header;
   footer?: Footer;
+  redirects?: Redirects;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -397,11 +398,25 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Redirects".
+ */
+export interface Redirects {
+  redirects?:
+    | {
+        path: string;
+        destination: string | Page;
+        id?: string | null;
+      }[]
+    | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation_select".
  */
 export interface NavigationSelect<T extends boolean = true> {
   header?: T | HeaderSelect<T>;
   footer?: T | FooterSelect<T>;
+  redirects?: T | RedirectsSelect<T>;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -434,6 +449,19 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   copyrightText?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  redirects?:
+    | T
+    | {
+        path?: T;
+        destination?: T;
+        id?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -8,17 +8,17 @@
   },
   "dependencies": {
     "@local/icons": "workspace:*",
-    "@payloadcms/db-mongodb": "^3.24.0",
-    "@payloadcms/plugin-nested-docs": "^3.24.0",
-    "@payloadcms/plugin-seo": "^3.24.0",
-    "@payloadcms/richtext-lexical": "^3.24.0",
-    "@payloadcms/ui": "^3.24.0",
-    "@payloadcms/storage-gcs": "^3.24.0",
-    "payload": "^3.24.0",
+    "@payloadcms/db-mongodb": "^3.35.1",
+    "@payloadcms/plugin-nested-docs": "^3.35.1",
+    "@payloadcms/plugin-seo": "^3.35.1",
+    "@payloadcms/richtext-lexical": "^3.35.1",
+    "@payloadcms/ui": "^3.35.1",
+    "@payloadcms/storage-gcs": "^3.35.1",
+    "payload": "^3.35.1",
     "sharp": "0.33.5"
   },
   "peerDependencies": {
-    "payload": "^3.24.0",
+    "payload": "^3.35.1",
     "sharp": "0.33.5"
   },
   "devDependencies": {

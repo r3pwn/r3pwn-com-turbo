@@ -84,24 +84,19 @@ export default buildConfig({
       // add the breadcrumbs field manually on the collection, but hidden from the UI
       breadcrumbsFieldSlug: "breadcrumbs",
     }),
-    // add gcs plugin only if GCS env vars are passed
-    ...(process.env.GCS_BUCKET
-      ? [
-          gcsStorage({
-            collections: {
-              media: {
-                generateFileURL: ({ filename }) =>
-                  `${process.env.PUBLIC_MEDIA_PREFIX}/${filename}`,
-              },
-            },
-            bucket: process.env.GCS_BUCKET,
-            options: {
-              credentials: JSON.parse(
-                (process.env.GCS_CREDENTIALS as string) || "{}"
-              ),
-            },
-          }),
-        ]
-      : []),
+    gcsStorage({
+      collections: {
+        media: {
+          generateFileURL: ({ filename }) =>
+            `${process.env.PUBLIC_MEDIA_PREFIX}/${filename}`,
+        },
+      },
+      bucket: process.env.GCS_BUCKET as string,
+      options: {
+        credentials: JSON.parse(
+          (process.env.GCS_CREDENTIALS as string) || "{}"
+        ),
+      },
+    }),
   ],
 });

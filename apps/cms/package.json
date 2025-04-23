@@ -17,12 +17,12 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.36.0",
     "@local/payload": "workspace:*",
-    "@payloadcms/next": "^3.24.0",
-    "@payloadcms/ui": "^3.24.0",
+    "@payloadcms/next": "^3.35.1",
+    "@payloadcms/ui": "^3.35.1",
     "cross-env": "^7.0.3",
     "graphql": "^16.10.0",
-    "next": "15.1.7",
-    "payload": "^3.24.0",
+    "next": "15.2.3",
+    "payload": "^3.35.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sharp": "0.33.5"

@@ -23,6 +23,7 @@ export default defineConfig({
   adapter: vercel({
     isr: {
       bypassToken: process.env.REVALIDATE_SECRET,
+      expiration: 60 * 60 * 24, // 24 hours
     }
   }),
   experimental: {

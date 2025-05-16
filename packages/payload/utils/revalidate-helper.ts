@@ -8,7 +8,7 @@ export const revalidatePages = async (pages: string[]) => {
   await Promise.all(
     pages.map((page) => {
       return fetch(`${process.env.SITE_HOST}${page}`, {
-        method: "HEAD",
+        method: "GET",
         headers: commonHeaders(),
       });
     })

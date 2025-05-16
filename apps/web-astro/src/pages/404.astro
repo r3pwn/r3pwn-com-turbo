@@ -1,12 +1,20 @@
 ---
 // Component Imports
-import BaseLayout from '@/layouts/base-layout.astro';
-import Typography from '@/components/ui/typography.astro';
+import BaseLayout from "@/layouts/base-layout.astro";
+import Typography from "@/components/ui/typography.astro";
+import { getNavigation } from "@/providers/content-provider";
+
+const nav = await getNavigation();
 ---
 
-<BaseLayout>
+<BaseLayout nav={nav}>
   <Fragment slot="head">
     <title>404 | r3pwn</title>
   </Fragment>
-  <Typography display="body-lg">Not found</Typography>
+  <Fragment>
+    <div class="h-[33vh] content-end justify-self-center">
+      <Typography display="heading-sm" class="text-center"> 404 | </Typography>
+      <Typography display="body-lg">This page could not be found.</Typography>
+    </div>
+  </Fragment>
 </BaseLayout>

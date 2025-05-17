@@ -4,6 +4,7 @@ import SiteFooter from "@/components/layout/site-footer.astro";
 import SiteHeader from "@/components/layout/site-header.astro";
 import type { NavigationData, Page } from "@local/payload/types";
 import { Font } from "astro:assets";
+import { undefined } from "astro:schema";
 
 export interface Props {
   nav: NavigationData;
@@ -11,10 +12,25 @@ export interface Props {
 
 const { nav } = Astro.props;
 
+const socialLinks = nav.footer?.socialLinks?.map((link) => {
+  return {
+    ariaLabel: link.ariaLabel,
+    url:
+      link.linkType === "external"
+        ? link.url
+        : (link.target as Page)?.url || "/",
+    icon: link.icon,
+    openInNewTab: link.openInNewTab,
+  };
+});
 const navLinks = nav.header?.navigationLinks?.map((link) => {
   return {
-    label: link.label,
-    url: (link.target as Page)?.url || "/",
+    label: link.label || "",
+    url:
+      (link.linkType === "external" ? link.url : (link.target as Page)?.url) ||
+      "/",
+    icon: link.icon as string | undefined,
+    openInNewTab: link.openInNewTab || false,
   };
 });
 ---
@@ -36,7 +52,7 @@ const navLinks = nav.header?.navigationLinks?.map((link) => {
       <slot />
     </main>
     <SiteFooter
-      socialLinks={nav.footer?.socialLinks || []}
+      socialLinks={socialLinks || []}
       copyrightText={nav.footer?.copyrightText || ""}
     />
   </body>

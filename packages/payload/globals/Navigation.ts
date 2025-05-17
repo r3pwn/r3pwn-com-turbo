@@ -1,6 +1,7 @@
 import { revalidateTags } from "../utils/revalidate-helper";
-import { SUPPORTED_ICONS } from "@local/icons";
-import type { GlobalConfig } from "payload";
+import { IconField } from "../fields/icon-field";
+import { LinkFields } from "../fields/link-fields";
+import type { Field, GlobalConfig } from "payload";
 
 export const Navigation: GlobalConfig = {
   slug: "navigation",
@@ -26,19 +27,7 @@ export const Navigation: GlobalConfig = {
                 singular: "Link",
                 plural: "Links",
               },
-              fields: [
-                {
-                  name: "label",
-                  type: "text",
-                  required: true,
-                },
-                {
-                  name: "target",
-                  type: "relationship",
-                  relationTo: "pages",
-                  required: true,
-                },
-              ],
+              fields: [...LinkFields(), IconField()],
             },
           ],
         },
@@ -59,24 +48,10 @@ export const Navigation: GlobalConfig = {
                   name: "ariaLabel",
                   type: "text",
                 },
-                {
-                  name: "url",
-                  type: "text",
-                },
-                {
-                  name: "icon",
-                  type: "select",
-                  options: SUPPORTED_ICONS.map((iconName) => ({
-                    label: `${iconName.charAt(0).toUpperCase()}${iconName.slice(1)}`,
-                    value: iconName,
-                  })),
-                },
-                {
-                  name: "openInNewTab",
-                  type: "checkbox",
-                  label: "Open link in new tab",
-                  defaultValue: false,
-                },
+                IconField(),
+                ...LinkFields().filter(
+                  (field: Field & { name?: string }) => field.name !== "label"
+                ),
               ],
             },
             {

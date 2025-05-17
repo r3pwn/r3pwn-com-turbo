@@ -374,8 +374,12 @@ export interface NavigationData {
 export interface Header {
   navigationLinks?:
     | {
-        label: string;
-        target: string | Page;
+        label?: string | null;
+        linkType?: ('internal' | 'external') | null;
+        target?: (string | null) | Page;
+        url?: string | null;
+        openInNewTab?: boolean | null;
+        icon?: ('email' | 'facebook' | 'github' | 'instagram' | 'linkedin' | 'reddit' | 'telegram' | 'twitter') | null;
         id?: string | null;
       }[]
     | null;
@@ -388,8 +392,10 @@ export interface Footer {
   socialLinks?:
     | {
         ariaLabel?: string | null;
-        url?: string | null;
         icon?: ('email' | 'facebook' | 'github' | 'instagram' | 'linkedin' | 'reddit' | 'telegram' | 'twitter') | null;
+        linkType?: ('internal' | 'external') | null;
+        target?: (string | null) | Page;
+        url?: string | null;
         openInNewTab?: boolean | null;
         id?: string | null;
       }[]
@@ -430,7 +436,11 @@ export interface HeaderSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
+        linkType?: T;
         target?: T;
+        url?: T;
+        openInNewTab?: T;
+        icon?: T;
         id?: T;
       };
 }
@@ -443,8 +453,10 @@ export interface FooterSelect<T extends boolean = true> {
     | T
     | {
         ariaLabel?: T;
-        url?: T;
         icon?: T;
+        linkType?: T;
+        target?: T;
+        url?: T;
         openInNewTab?: T;
         id?: T;
       };

@@ -1,4 +1,4 @@
-import { UrlSlugField } from "../fields/url-slug";
+import { UrlSlugField } from "../fields/url-slug-field";
 import { revalidatePages } from "../utils/revalidate-helper";
 import { slugify } from "../utils/string-helpers";
 import { createBreadcrumbsField } from "@payloadcms/plugin-nested-docs";

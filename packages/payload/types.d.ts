@@ -570,6 +570,16 @@ export interface ImageWithTextBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "YoutubeEmbedBlock".
+ */
+export interface YoutubeEmbedBlock {
+  videoId: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'youtube-embed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

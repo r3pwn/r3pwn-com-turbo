@@ -1,0 +1,13 @@
+---
+import type { YoutubeEmbedBlock } from "@local/payload/types";
+
+export interface Props extends Omit<YoutubeEmbedBlock, "blockType"> {}
+
+const { videoId } = Astro.props;
+---
+
+<iframe
+  src={`https://www.youtube.com/embed/${videoId}`}
+  class="mx-auto w-full md:w-[80%] lg:w-[60%] aspect-video"
+>
+</iframe>

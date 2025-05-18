@@ -38,6 +38,10 @@ switch (content.blockType) {
     Element = (await import("./rotating-text/block.astro")).default;
     props = content;
     break;
+  case "youtube-embed":
+    Element = (await import("./youtube-embed/block.astro")).default;
+    props = content;
+    break;
   default:
     Element = Debug;
     props = {

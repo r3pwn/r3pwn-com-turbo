@@ -26,6 +26,7 @@ import { DisqusComments } from "./blocks/DisqusComments";
 import { GiscusComments } from "./blocks/GiscusComments";
 import { ImageWithText } from "./blocks/ImageWithText";
 import { RotatingText } from "./blocks/RotatingText";
+import { YoutubeEmbed } from "./blocks/YoutubeEmbed";
 
 import { generatePreviewUrl } from "./utils/seo-helpers";
 
@@ -52,6 +53,7 @@ export default buildConfig({
           DisqusComments,
           GiscusComments,
           ImageWithText,
+          YoutubeEmbed,
         ],
         inlineBlocks: [RotatingText],
       }),

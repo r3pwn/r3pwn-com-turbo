@@ -9,6 +9,7 @@ export const CodeBlock: Block = {
       type: "select",
       required: true,
       defaultValue: "plain",
+      // Check https://prismjs.com/#supported-languages for supported languages
       options: [
         {
           label: "Plaintext",

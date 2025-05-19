@@ -27,6 +27,7 @@ import { GiscusComments } from "./blocks/GiscusComments";
 import { ImageWithText } from "./blocks/ImageWithText";
 import { RotatingText } from "./blocks/RotatingText";
 import { YoutubeEmbed } from "./blocks/YoutubeEmbed";
+import { CodeBlock } from "./blocks/CodeBlock";
 
 import { generatePreviewUrl } from "./utils/seo-helpers";
 
@@ -54,6 +55,7 @@ export default buildConfig({
           GiscusComments,
           ImageWithText,
           YoutubeEmbed,
+          CodeBlock,
         ],
         inlineBlocks: [RotatingText],
       }),

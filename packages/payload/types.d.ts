@@ -580,6 +580,30 @@ export interface YoutubeEmbedBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CodeBlock".
+ */
+export interface CodeBlock {
+  language:
+    | 'plain'
+    | 'js'
+    | 'ts'
+    | 'csharp'
+    | 'python'
+    | 'java'
+    | 'go'
+    | 'html'
+    | 'css'
+    | 'yaml'
+    | 'json'
+    | 'json5'
+    | 'xml';
+  code: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'code-block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {

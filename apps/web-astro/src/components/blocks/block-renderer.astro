@@ -42,6 +42,10 @@ switch (content.blockType) {
     Element = (await import("./youtube-embed/block.astro")).default;
     props = content;
     break;
+  case "code-block":
+    Element = (await import("./code-block/block.astro")).default;
+    props = content;
+    break;
   default:
     Element = Debug;
     props = {

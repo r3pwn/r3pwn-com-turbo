@@ -1,0 +1,13 @@
+---
+import { Prism } from "@astrojs/prism";
+import type { CodeBlock } from "@local/payload/types";
+
+export interface Props {
+  language: CodeBlock["language"];
+  code: CodeBlock["code"];
+}
+
+const { language, code } = Astro.props;
+---
+
+<Prism lang={language} code={code} />

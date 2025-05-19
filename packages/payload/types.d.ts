@@ -584,7 +584,7 @@ export interface YoutubeEmbedBlock {
  */
 export interface CodeBlock {
   language:
-    | 'plain'
+    | 'text'
     | 'js'
     | 'ts'
     | 'csharp'

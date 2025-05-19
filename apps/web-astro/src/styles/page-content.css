@@ -24,4 +24,6 @@
 .astro-code {
   padding: 1rem;
   border-radius: var(--radius);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }

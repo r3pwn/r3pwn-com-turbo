@@ -10,4 +10,4 @@ export interface Props {
 const { language, code } = Astro.props;
 ---
 
-<Code lang={language === "plain" ? "text" : language} code={code} />
+<Code lang={language} code={code} theme="github-dark" />

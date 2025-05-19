@@ -20,3 +20,8 @@
 .rich-text-root li:has(ul, ol) {
   list-style: none;
 }
+
+.astro-code {
+  padding: 1rem;
+  border-radius: var(--radius);
+}
